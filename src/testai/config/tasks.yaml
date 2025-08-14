@@ -1,0 +1,42 @@
+intro_task:
+  description: >
+    Démarrer l'entretien pour le poste {role_title}. Présente le cadre (durée ~45min, sections: intro, technique, soft skills, feedback, conclusion),
+    rappelle la confidentialité, demande le consentement et confirme la compréhension du candidat.
+    Utilise AskCandidateTool pour poser 1-3 questions de clarification et recueillir les réponses.
+  expected_output: >
+    JSON {"intro_questions": [{"q": str, "a": str}], "consent": true|false}
+  agent: intro_agent
+
+tech_qna_task:
+  description: >
+    Conduire la partie technique. Utilise exclusivement le RAG via l'outil RAGSearchTool pour formuler 6-10 questions.
+    Chaque question doit citer au moins un chunk_id et inclure un court contexte extrait du chunk.
+    Pour chaque question, utilise AskCandidateTool (ou SimulatedCandidateTool en mode test) pour collecter la réponse.
+  expected_output: >
+    JSON {"tech_qa": [{"q": str, "a": str, "chunk_id": str}]}
+  agent: tech_interviewer
+
+softskills_qna_task:
+  description: >
+    Conduire la partie soft skills avec 4-6 questions comportementales (STAR/SAO). Utilise AskCandidateTool (ou SimulatedCandidateTool) pour les réponses.
+  expected_output: >
+    JSON {"soft_qa": [{"q": str, "a": str}]}
+  agent: softskills_interviewer
+
+analysis_scoring_task:
+  description: >
+    Analyser les réponses. Côté technique: comparer les réponses aux contenus RAG cités, évaluer précision, complétude, exactitude factuelle.
+    Côté soft skills: évaluer pertinence, clarté, structure, collaboration, ownership. Produire deux scores 0-100 et justification brève.
+  expected_output: >
+    JSON {"technical_score": int, "technical_comment": str, "soft_skills_score": int, "soft_skills_comment": str}
+  agent: analyst_agent
+
+report_task:
+  description: >
+    Générer le rapport final pour recruteur non technique: résumé du profil, liste des questions et réponses, scores, points forts,
+    axes d'amélioration, recommandation finale (Oui/Non/A discuter) avec justification.
+  expected_output: >
+    1) Un bloc JSON (une seule ligne) respectant exactement la structure:
+    {"profile_summary":"...","technical_score":0,"technical_comment":"...","soft_skills_score":0,"soft_skills_comment":"...","strengths":["..."],"improvements":["..."],"final_recommendation":"Oui|Non|A discuter","recommendation_reason":"..."}
+    2) Ensuite, un rapport complet en Markdown, sans balises ```.
+  agent: reporter_agent

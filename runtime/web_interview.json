@@ -1,0 +1,94 @@
+{
+  "items": [
+    {
+      "id": "f5dd9e3e-a1e1-4af6-9add-fbf65611e9e1",
+      "question": "Bonjour et bienvenue ! Je suis [Your Name], recruteur chez [Company Name]. Merci de prendre le temps de passer cet entretien pour le poste de Senior Python Engineer. Pour commencer, pourriez-vous me dire comment vous allez aujourd'hui et confirmer que vous m'entendez bien ?",
+      "answer": "Bonjour , je suis bien et vous , oui je t'entend bien",
+      "ts": 1755116132.802296
+    },
+    {
+      "id": "e10bce8d-fd94-4be9-b32c-c6d6a95c8b09",
+      "question": "Parfait ! Cet entretien durera environ 45 minutes. Nous aborderons les points suivants : une brève introduction de vous et de votre parcours, une évaluation technique de vos compétences en Python, une discussion sur vos soft skills et votre expérience de travail en équipe, un moment pour vos questions et enfin une conclusion avec les prochaines étapes. Tout ce qui sera dit restera confidentiel. Êtes-vous d'accord avec ce cadre et consentez-vous à ce que nous procédions ainsi ?",
+      "answer": "Oui je suis d'accord",
+      "ts": 1755116712.9959664
+    },
+    {
+      "id": "99b6d993-df9c-4097-b8a4-09204c63aba4",
+      "question": "Excellent. Avant de commencer la partie technique, pourriez-vous me donner un bref aperçu de votre expérience avec Python et des types de projets sur lesquels vous avez travaillé ?",
+      "answer": "Cancernant python ,j'ai travaillé beacoup avec , notament sur des projets machine learning en implementant des algorithme n et aussi des applications web avec flask et fatstapi",
+      "ts": 1755116759.5061514
+    },
+    {
+      "id": "4b861cb7-259f-4b64-8618-0942e6bf19c5",
+      "question": "Chunk ID: fastapi_tutorial.txt::chunk-80. In FastAPI, how do you set a cookie in the response, and what is the general purpose of using cookies in web applications?",
+      "answer": "In FastAPI, you set a cookie by using the Response.set_cookie() method inside your endpoint.",
+      "ts": 1755116851.1026895
+    },
+    {
+      "id": "37c9295c-1bb2-4295-ae92-042c51a2fac7",
+      "question": "Based on chunk_id fastapi_tutorial.txt::chunk-137, can you explain how to mount a Flask application as a sub-application within a FastAPI application? What is the purpose of using WSGIMiddleware in this context?",
+      "answer": "You can mount a Flask app inside a FastAPI app using WSGIMiddleware so FastAPI can serve it alongside its own routes. This works because Flask is WSGI-based and FastAPI is ASGI-based—the middleware acts as a compatibility bridge.",
+      "ts": 1755116964.0631263
+    },
+    {
+      "id": "547edbf0-9cdb-4053-a022-5f65ca2878fb",
+      "question": "Based on chunk_id fastapi_tutorial.txt::chunk-119, how does GraphQL differ from REST in terms of data fetching and manipulation, and what are some Python libraries you can use for GraphQL with FastAPI?",
+      "answer": "GraphQL differs from REST mainly in how clients fetch and manipulate data—GraphQL lets the client specify exactly what data it needs in a single query, while REST exposes fixed endpoints that may over-fetch or under-fetch data.",
+      "ts": 1755117041.1894658
+    },
+    {
+      "id": "6cf8e3f0-b2ee-47c6-94c0-0813cef6bf44",
+      "question": "Based on the information in chunk_id fastapi_tutorial.txt::chunk-51 and fastapi_tutorial.txt::chunk-55, explain how Pydantic is used for data validation in FastAPI, and give an example of how to define validation rules for a request body field.",
+      "answer": "Dans FastAPI, Pydantic est utilisé pour définir des modèles de données qui servent à valider et convertir automatiquement les données d’entrée (JSON, query params, etc.) avant qu’elles n’atteignent votre logique métier.",
+      "ts": 1755117072.911617
+    },
+    {
+      "id": "34100dba-31c3-47d3-b728-997557830b46",
+      "question": "Based on chunk_id fastapi_tutorial.txt::chunk-90 and fastapi_tutorial.txt::chunk-92, explain how dependency injection works in FastAPI and provide an example of how to use the `Depends` function to inject a dependency into a route.",
+      "answer": "Dans FastAPI, la dependency injection permet d’injecter automatiquement dans une route des objets, fonctions ou ressources dont elle dépend, sans que la route ait à les créer elle-même. Cela facilite la réutilisation, la séparation des responsabilités et la testabilité.",
+      "ts": 1755117133.303413
+    },
+    {
+      "id": "c12648ca-c7c3-4c59-85af-ea85467a61fb",
+      "question": "Based on chunk_id fastapi_tutorial.txt::chunk-135, what is middleware in FastAPI, and how can you add custom middleware to a FastAPI application? Provide an example of a simple middleware function.",
+      "answer": "In FastAPI, a middleware is a function that runs before and after every request. It can inspect, modify, or log the request/response, and is useful for tasks like logging, authentication checks, request timing, or modifying headers.",
+      "ts": 1755117174.006613
+    },
+    {
+      "id": "dd5f22d5-b6f9-4d6a-97f8-439b4c7096a1",
+      "question": "Décrivez une situation où vous avez dû faire face à un problème complexe au travail. Comment l'avez-vous abordé, quelles ont été les étapes clés de votre résolution, et quel a été le résultat final ?",
+      "answer": "Premierement je me calme , ensuite je cherche sur le type de probleme , j'essaie de chercher une solution ,si j'arrive pas à en trouver ,je  vais essayer de le discuter avec mon equipe ",
+      "ts": 1755117253.6656363
+    },
+    {
+      "id": "e0216b09-f893-4d49-be38-97bca621c9ab",
+      "question": "Parlez-moi d'une fois où vous avez dû travailler en équipe pour atteindre un objectif commun. Quel était votre rôle, comment avez-vous contribué au succès de l'équipe, et quels défis avez-vous rencontrés et surmontés ?",
+      "answer": "J",
+      "ts": 1755117393.264736
+    },
+    {
+      "id": "ce03254f-ffd2-4479-a744-28ecdde23867",
+      "question": "Racontez une situation où vous avez commis une erreur importante au travail. Comment avez-vous géré cette situation, quelles leçons en avez-vous tirées, et comment avez-vous adapté votre approche par la suite ?",
+      "answer": "en realité j'ai jamais commis une erreur fatale mais de temps en temps ca arrive des erreurs controlables ,que je peux les resoluer clmemant",
+      "ts": 1755117569.8121414
+    },
+    {
+      "id": "5d512e36-1068-4482-8af2-171f080799fb",
+      "question": "Décrivez une situation où vous avez dû prendre une initiative importante sans y être directement invité. Qu'est-ce qui vous a motivé à agir, comment avez-vous mis en œuvre votre idée, et quel a été l'impact de votre initiative ?",
+      "answer": "ca m",
+      "ts": 1755117680.1115599
+    },
+    {
+      "id": "7f561d3b-6e6a-4826-8876-ded3d3ef5caf",
+      "question": "Parlez-moi d'une situation où vous avez dû gérer un désaccord avec un collègue. Comment avez-vous abordé la situation, comment avez-vous communiqué pour résoudre le conflit, et quel a été le résultat final ?",
+      "answer": "Dans la plupart de temps ca arrive des desaccords avec mes collegues concernants quelques details sur les projets qu'on est chargé de realiser , mais pour moi le fait d'avoir des perspectives differents ca contribue à developper et avancer bien dans le projet , je pense que ca un bienfait surtout sur le projet , concerant le conflit se resout en prenant l'idée la plus convaincante , c'est à dire qui arrive à nous convaincre plus sur son idée ",
+      "ts": 1755117889.5052853
+    },
+    {
+      "id": "e2bcf555-4e26-4c98-9651-558af880691d",
+      "question": "Bonjour et bienvenue ! Je suis [Your Name], recruteur chez [Company Name]. Merci de prendre le temps de participer à cet entretien pour le poste de Senior Python Engineer. Cet entretien durera environ 45 minutes et sera structuré comme suit : une brève introduction, une partie technique, une évaluation des compétences générales, un moment pour vos questions et une conclusion. Tout ce que nous discuterons ici restera strictement confidentiel. Pour commencer, pourriez-vous me confirmer que vous êtes d'accord avec ce déroulement et que vous consentez à ce que nous procédions ainsi ?",
+      "answer": null,
+      "ts": 1755201980.526793
+    }
+  ]
+}
