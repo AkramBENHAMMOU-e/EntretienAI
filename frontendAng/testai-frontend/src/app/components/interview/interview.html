@@ -1,0 +1,246 @@
+<div class="interview-container">
+  <!-- Header de l'entretien -->
+  <div class="interview-header">
+    <div class="container">
+      <h2 class="text-center mb-4">
+        <i class="fas fa-user-tie me-2"></i>
+        Entretien pour le poste de {{ currentRole }}
+      </h2>
+      
+      <!-- Barre de progression -->
+      <div class="progress-container mb-4">
+        <div class="progress" style="height: 8px;">
+          <div class="progress-bar bg-primary" 
+               [style.width.%]="getProgressPercentage()" 
+               role="progressbar">
+          </div>
+        </div>
+        <div class="progress-text mt-2">
+          <small class="text-muted">
+            Phase {{ getCurrentPhaseNumber() }} sur 4 - {{ getProgressPercentage() }}% terminé
+          </small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contenu principal -->
+  <div class="container">
+    <!-- Phase d'introduction -->
+    <div *ngIf="currentPhase === 'intro'" class="interview-phase">
+      <div class="card">
+        <div class="card-header bg-primary text-white">
+          <h5 class="mb-0">
+            <i class="fas fa-handshake me-2"></i>
+            Phase d'introduction
+          </h5>
+        </div>
+        <div class="card-body">
+          <div class="welcome-message text-center mb-4">
+            <h4>Bienvenue dans votre entretien !</h4>
+            <p class="text-muted">
+              Cet entretien durera environ 45 minutes et se déroulera en 4 phases :<br>
+              <strong>Introduction</strong> • <strong>Questions techniques</strong> • <strong>Soft skills</strong> • <strong>Conclusion</strong>
+            </p>
+          </div>
+
+          <!-- Consentement -->
+          <div class="consent-section text-center">
+            <div class="form-check d-inline-block">
+              <input class="form-check-input" 
+                     type="checkbox" 
+                     id="consent" 
+                     [(ngModel)]="userConsent">
+              <label class="form-check-label" for="consent">
+                Je consens à participer à cet entretien et j'accepte que mes réponses soient enregistrées
+              </label>
+            </div>
+          </div>
+
+          <div class="text-center mt-4">
+            <button class="btn btn-primary btn-lg" 
+                    [disabled]="!userConsent"
+                    (click)="startInterview()">
+              <i class="fas fa-play me-2"></i>
+              Commencer l'entretien
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Phase des questions techniques -->
+    <div *ngIf="currentPhase === 'technical'" class="interview-phase">
+      <div class="card">
+        <div class="card-header bg-info text-white">
+          <h5 class="mb-0">
+            <i class="fas fa-code me-2"></i>
+            Questions techniques
+          </h5>
+        </div>
+        <div class="card-body">
+          <div class="question-display mb-4">
+            <h4 class="question-text">
+              {{ getCurrentQuestion()?.question || 'Chargement de la question...' }}
+            </h4>
+            <div class="question-meta">
+              <span class="badge bg-secondary me-2">
+                Question {{ currentQuestionIndex + 1 }} sur {{ getTechnicalQuestions().length }}
+              </span>
+              <span class="badge bg-info">Technique</span>
+            </div>
+          </div>
+
+          <div class="answer-input mb-4">
+            <label for="technicalAnswer" class="form-label">Votre réponse :</label>
+            <textarea class="form-control" 
+                      id="technicalAnswer"
+                      rows="4"
+                      placeholder="Décrivez votre expérience et vos connaissances..."
+                      [(ngModel)]="currentAnswer"></textarea>
+          </div>
+
+          <div class="question-actions">
+            <button class="btn btn-secondary me-2" (click)="skipQuestion()">
+              <i class="fas fa-forward me-2"></i>
+              Passer
+            </button>
+            <button class="btn btn-primary" 
+                    [disabled]="!currentAnswer.trim()"
+                    (click)="submitAnswer()">
+              <i class="fas fa-check me-2"></i>
+              Valider et continuer
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Phase des soft skills -->
+    <div *ngIf="currentPhase === 'soft-skills'" class="interview-phase">
+      <div class="card">
+        <div class="card-header bg-success text-white">
+          <h5 class="mb-0">
+            <i class="fas fa-users me-2"></i>
+            Compétences relationnelles
+          </h5>
+        </div>
+        <div class="card-body">
+          <div class="question-display mb-4">
+            <h4 class="question-text">
+              {{ getCurrentQuestion()?.question || 'Chargement de la question...' }}
+            </h4>
+            <div class="question-meta">
+              <span class="badge bg-secondary me-2">
+                Question {{ currentQuestionIndex + 1 }} sur {{ getSoftSkillsQuestions().length }}
+              </span>
+              <span class="badge bg-success">Soft Skills</span>
+            </div>
+          </div>
+
+          <div class="answer-input mb-4">
+            <label for="softSkillsAnswer" class="form-label">Votre réponse :</label>
+            <textarea class="form-control" 
+                      id="softSkillsAnswer"
+                      rows="4"
+                      placeholder="Partagez une expérience concrète..."
+                      [(ngModel)]="currentAnswer"></textarea>
+          </div>
+
+          <div class="question-actions">
+            <button class="btn btn-secondary me-2" (click)="skipQuestion()">
+              <i class="fas fa-forward me-2"></i>
+              Passer
+            </button>
+            <button class="btn btn-success" 
+                    [disabled]="!currentAnswer.trim()"
+                    (click)="submitAnswer()">
+              <i class="fas fa-check me-2"></i>
+              Valider et continuer
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Phase de conclusion -->
+    <div *ngIf="currentPhase === 'conclusion'" class="interview-phase">
+      <div class="card">
+        <div class="card-header bg-warning text-dark">
+          <h5 class="mb-0">
+            <i class="fas fa-flag-checkered me-2"></i>
+            Conclusion de l'entretien
+          </h5>
+        </div>
+        <div class="card-body text-center">
+          <div class="completion-message mb-4">
+            <i class="fas fa-trophy fa-3x text-warning mb-3"></i>
+            <h4>Félicitations !</h4>
+            <p class="text-muted">
+              Vous avez terminé toutes les phases de l'entretien.<br>
+              Merci pour votre participation et vos réponses détaillées.
+            </p>
+          </div>
+
+          <div class="next-steps mb-4">
+            <h5>Prochaines étapes :</h5>
+            <ul class="list-unstyled">
+              <li><i class="fas fa-clock me-2 text-primary"></i>Analyse de vos réponses</li>
+              <li><i class="fas fa-envelope me-2 text-primary"></i>Réponse sous 48-72h</li>
+              <li><i class="fas fa-phone me-2 text-primary"></i>Contact téléphonique si sélectionné</li>
+            </ul>
+          </div>
+
+          <div class="action-buttons">
+            <button class="btn btn-outline-primary me-2" (click)="downloadReport()">
+              <i class="fas fa-download me-2"></i>
+              Télécharger le rapport
+            </button>
+            <button class="btn btn-primary" (click)="restartInterview()">
+              <i class="fas fa-redo me-2"></i>
+              Recommencer
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation entre phases -->
+    <div class="phase-navigation mt-4" *ngIf="currentPhase !== 'intro' && currentPhase !== 'conclusion'">
+      <div class="row">
+        <div class="col-md-3">
+          <button class="btn btn-outline-primary w-100" 
+                  [disabled]="!canAccessPhase('intro')"
+                  (click)="goToPhase('intro')">
+            <i class="fas fa-handshake me-2"></i>
+            Introduction
+          </button>
+        </div>
+        <div class="col-md-3">
+          <button class="btn btn-outline-info w-100" 
+                  [disabled]="!canAccessPhase('technical')"
+                  (click)="goToPhase('technical')">
+            <i class="fas fa-code me-2"></i>
+            Technique
+          </button>
+        </div>
+        <div class="col-md-3">
+          <button class="btn btn-outline-success w-100" 
+                  [disabled]="!canAccessPhase('soft-skills')"
+                  (click)="goToPhase('soft-skills')">
+            <i class="fas fa-users me-2"></i>
+            Soft Skills
+          </button>
+        </div>
+        <div class="col-md-3">
+          <button class="btn btn-outline-warning w-100" 
+                  [disabled]="!canAccessPhase('conclusion')"
+                  (click)="goToPhase('conclusion')">
+            <i class="fas fa-flag-checkered me-2"></i>
+            Conclusion
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,450 @@
+<div class="admin-panel-container">
+  <!-- Header de l'administration -->
+  <div class="admin-header">
+    <div class="container">
+      <h2 class="text-center mb-0">
+        <i class="fas fa-cogs me-2"></i>
+        Panneau d'Administration - TestAI
+      </h2>
+    </div>
+  </div>
+
+  <!-- Contenu principal -->
+  <div class="container">
+    <!-- Navigation par onglets -->
+    <ul class="nav nav-tabs" id="adminTabs" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" 
+                [class.active]="activeTab === 'config'"
+                (click)="setActiveTab('config')"
+                type="button" 
+                role="tab">
+          <i class="fas fa-briefcase me-2"></i>
+          Configuration
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" 
+                [class.active]="activeTab === 'interviews'"
+                (click)="setActiveTab('interviews')"
+                type="button" 
+                role="tab">
+          <i class="fas fa-users me-2"></i>
+          Entretiens
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" 
+                [class.active]="activeTab === 'reports'"
+                (click)="setActiveTab('reports')"
+                type="button" 
+                role="tab">
+          <i class="fas fa-chart-bar me-2"></i>
+          Rapports
+        </button>
+      </li>
+    </ul>
+
+    <!-- Contenu des onglets -->
+    <div class="tab-content" id="adminTabContent">
+      
+      <!-- Onglet Configuration des postes -->
+      <div class="tab-pane" 
+           [class.show]="activeTab === 'config'"
+           [class.active]="activeTab === 'config'">
+        <div class="job-config-section">
+          <div class="card">
+            <div class="card-header">
+              <h5 class="mb-0">
+                <i class="fas fa-briefcase me-2"></i>
+                Configuration du Poste
+              </h5>
+            </div>
+            <div class="card-body">
+              <form>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="jobTitle">Titre du poste</label>
+                      <input type="text" 
+                             class="form-control" 
+                             id="jobTitle" 
+                             [(ngModel)]="jobConfig.title"
+                             name="jobTitle"
+                             placeholder="Ex: Comptable Senior">
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="jobDepartment">Département</label>
+                      <input type="text" 
+                             class="form-control" 
+                             id="jobDepartment" 
+                             [(ngModel)]="jobConfig.department"
+                             name="jobDepartment"
+                             placeholder="Ex: Comptabilité">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="jobExperience">Expérience requise</label>
+                      <input type="text" 
+                             class="form-control" 
+                             id="jobExperience" 
+                             [(ngModel)]="jobConfig.experience"
+                             name="jobExperience"
+                             placeholder="Ex: 3-5 ans">
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="jobSalary">Fourchette salariale</label>
+                      <input type="text" 
+                             class="form-control" 
+                             id="jobSalary" 
+                             [(ngModel)]="jobConfig.salary"
+                             name="jobSalary"
+                             placeholder="Ex: 35 000€ - 45 000€">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="jobLocation">Localisation</label>
+                      <input type="text" 
+                             class="form-control" 
+                             id="jobLocation" 
+                             [(ngModel)]="jobConfig.location"
+                             name="jobLocation"
+                             placeholder="Ex: Paris, Télétravail">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="jobRequirements">Exigences et compétences</label>
+                  <textarea class="form-control" 
+                            id="jobRequirements" 
+                            rows="4"
+                            [(ngModel)]="jobConfig.requirements"
+                            name="jobRequirements"
+                            placeholder="Décrivez les compétences requises, formations, certifications..."></textarea>
+                </div>
+
+                <div class="action-buttons">
+                  <button type="button" 
+                          class="btn btn-outline-secondary me-2"
+                          (click)="resetJobConfig()">
+                    <i class="fas fa-undo me-2"></i>
+                    Réinitialiser
+                  </button>
+                  <button type="button" 
+                          class="btn btn-primary"
+                          [disabled]="!canSaveJobConfig()"
+                          (click)="saveJobConfig()">
+                    <i class="fas fa-save me-2"></i>
+                    Sauvegarder
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <!-- Section des documents -->
+          <div class="card mt-4">
+            <div class="card-header">
+              <h5 class="mb-0">
+                <i class="fas fa-file-upload me-2"></i>
+                Documents de Référence
+              </h5>
+            </div>
+            <div class="card-body">
+              <!-- Zone d'upload -->
+              <div class="upload-area" (click)="fileInput.click()">
+                <div class="upload-icon">
+                  <i class="fas fa-cloud-upload-alt"></i>
+                </div>
+                <div class="upload-text">
+                  Cliquez ici pour ajouter un document ou glissez-déposez vos fichiers
+                </div>
+                <button type="button" class="upload-btn">
+                  <i class="fas fa-plus me-2"></i>
+                  Choisir un fichier
+                </button>
+                <input #fileInput 
+                       type="file" 
+                       class="file-input" 
+                       (change)="onFileSelected($event)"
+                       accept=".pdf,.doc,.docx,.xlsx,.png,.jpg,.jpeg">
+              </div>
+
+              <!-- Formulaire d'upload -->
+              <div *ngIf="newDocument.file" class="mt-3">
+                <div class="row">
+                  <div class="col-md-8">
+                    <input type="text" 
+                           class="form-control" 
+                           [(ngModel)]="newDocument.name"
+                           placeholder="Nom du document">
+                  </div>
+                  <div class="col-md-4">
+                    <button type="button" 
+                            class="btn btn-success w-100"
+                            [disabled]="!canUploadDocument()"
+                            (click)="uploadDocument()">
+                      <i class="fas fa-upload me-2"></i>
+                      Uploader
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Liste des documents -->
+              <div class="document-list mt-4">
+                <div *ngFor="let document of getFilteredDocuments()" class="document-item">
+                  <div class="document-info">
+                    <div class="document-icon">
+                      <i class="fas fa-file-pdf" *ngIf="document.type === 'PDF'"></i>
+                      <i class="fas fa-file-word" *ngIf="document.type === 'Word'"></i>
+                      <i class="fas fa-file-excel" *ngIf="document.type === 'Excel'"></i>
+                      <i class="fas fa-file-image" *ngIf="document.type === 'Image'"></i>
+                      <i class="fas fa-file" *ngIf="document.type === 'Autre'"></i>
+                    </div>
+                    <div class="document-details">
+                      <div class="document-name">{{ document.name }}</div>
+                      <div class="document-meta">
+                        <span><strong>Type:</strong> {{ document.type }}</span>
+                        <span><strong>Taille:</strong> {{ document.size }}</span>
+                        <span><strong>Date:</strong> {{ document.uploadDate }}</span>
+                        <span class="badge" [ngClass]="getStatusBadgeClass(document.status)">
+                          {{ document.status }}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="document-actions">
+                    <button class="btn btn-sm btn-success" 
+                            (click)="updateDocumentStatus(document.id, 'Validé')">
+                      <i class="fas fa-check"></i>
+                    </button>
+                    <button class="btn btn-sm btn-warning" 
+                            (click)="updateDocumentStatus(document.id, 'En attente')">
+                      <i class="fas fa-clock"></i>
+                    </button>
+                    <button class="btn btn-sm btn-danger" 
+                            (click)="deleteDocument(document.id)">
+                      <i class="fas fa-trash"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Onglet Gestion des entretiens -->
+      <div class="tab-pane" 
+           [class.show]="activeTab === 'interviews'"
+           [class.active]="activeTab === 'interviews'">
+        <div class="interviews-section">
+          <div class="card">
+            <div class="card-header">
+              <h5 class="mb-0">
+                <i class="fas fa-users me-2"></i>
+                Gestion des Entretiens
+              </h5>
+            </div>
+            <div class="card-body">
+              <!-- Filtres -->
+              <div class="filters-row row mb-3">
+                <div class="col-md-4">
+                  <label for="statusFilter" class="form-label">Filtrer par statut :</label>
+                  <select class="form-select" 
+                          id="statusFilter" 
+                          [(ngModel)]="statusFilter">
+                    <option value="all">Tous les statuts</option>
+                    <option value="En cours">En cours</option>
+                    <option value="Terminé">Terminé</option>
+                    <option value="Annulé">Annulé</option>
+                    <option value="En attente">En attente</option>
+                  </select>
+                </div>
+                <div class="col-md-4">
+                  <label for="positionFilter" class="form-label">Filtrer par poste :</label>
+                  <select class="form-select" 
+                          id="positionFilter" 
+                          [(ngModel)]="positionFilter">
+                    <option value="all">Tous les postes</option>
+                    <option value="Comptable">Comptable</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Tableau des entretiens -->
+              <div class="table-responsive">
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Candidat</th>
+                      <th>Poste</th>
+                      <th>Date</th>
+                      <th>Statut</th>
+                      <th>Score</th>
+                      <th>Notes</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let interview of getFilteredInterviews()">
+                      <td>{{ interview.id }}</td>
+                      <td>
+                        <strong>{{ interview.candidate }}</strong>
+                      </td>
+                      <td>{{ interview.position }}</td>
+                      <td>{{ interview.date }}</td>
+                      <td>
+                        <span class="badge" [ngClass]="getStatusBadgeClass(interview.status)">
+                          {{ interview.status }}
+                        </span>
+                      </td>
+                      <td>
+                        <span *ngIf="interview.score" class="badge bg-info">
+                          {{ interview.score }}/100
+                        </span>
+                        <span *ngIf="!interview.score" class="text-muted">-</span>
+                      </td>
+                      <td>
+                        <span *ngIf="interview.notes" 
+                              class="text-truncate d-inline-block" 
+                              style="max-width: 150px;"
+                              [title]="interview.notes">
+                          {{ interview.notes }}
+                        </span>
+                        <span *ngIf="!interview.notes" class="text-muted">Aucune note</span>
+                      </td>
+                      <td>
+                        <div class="interview-actions">
+                          <button class="btn btn-sm btn-warning" 
+                                  (click)="updateInterviewStatus(interview.id, 'En cours')"
+                                  [disabled]="interview.status === 'En cours'">
+                            <i class="fas fa-play"></i>
+                          </button>
+                          <button class="btn btn-sm btn-success" 
+                                  (click)="updateInterviewStatus(interview.id, 'Terminé')"
+                                  [disabled]="interview.status === 'Terminé'">
+                            <i class="fas fa-check"></i>
+                          </button>
+                          <button class="btn btn-sm btn-secondary" 
+                                  (click)="updateInterviewStatus(interview.id, 'Annulé')"
+                                  [disabled]="interview.status === 'Annulé'">
+                            <i class="fas fa-ban"></i>
+                          </button>
+                          <button class="btn btn-sm btn-danger" 
+                                  (click)="deleteInterview(interview.id)">
+                            <i class="fas fa-trash"></i>
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div *ngIf="getFilteredInterviews().length === 0" class="text-center py-4">
+                <i class="fas fa-search fa-3x text-muted mb-3"></i>
+                <p class="text-muted">Aucun entretien trouvé avec les filtres actuels.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Onglet Rapports et statistiques -->
+      <div class="tab-pane" 
+           [class.show]="activeTab === 'reports'"
+           [class.active]="activeTab === 'reports'">
+        <div class="stats-section">
+          <!-- Statistiques globales -->
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-icon bg-primary">
+                <i class="fas fa-clipboard-list"></i>
+              </div>
+              <div class="stat-value">{{ stats.totalInterviews }}</div>
+              <div class="stat-label">Total Entretiens</div>
+            </div>
+            
+            <div class="stat-card">
+              <div class="stat-icon bg-success">
+                <i class="fas fa-check-circle"></i>
+              </div>
+              <div class="stat-value">{{ stats.completedInterviews }}</div>
+              <div class="stat-label">Entretiens Terminés</div>
+            </div>
+            
+            <div class="stat-card">
+              <div class="stat-icon bg-warning">
+                <i class="fas fa-star"></i>
+              </div>
+              <div class="stat-value">{{ stats.averageScore }}</div>
+              <div class="stat-label">Score Moyen</div>
+            </div>
+            
+            <div class="stat-card">
+              <div class="stat-icon bg-info">
+                <i class="fas fa-hourglass-half"></i>
+              </div>
+              <div class="stat-value">{{ stats.activePositions }}</div>
+              <div class="stat-label">Postes Actifs</div>
+            </div>
+          </div>
+
+          <!-- Actions d'export -->
+          <div class="card">
+            <div class="card-header">
+              <h5 class="mb-0">
+                <i class="fas fa-download me-2"></i>
+                Export des Données
+              </h5>
+            </div>
+            <div class="card-body">
+              <p class="text-muted mb-4">
+                Exportez les données d'entretiens et de configuration pour analyse ou archivage.
+              </p>
+              
+              <div class="export-actions">
+                <button type="button" 
+                        class="btn btn-primary"
+                        (click)="exportData()">
+                  <i class="fas fa-database me-2"></i>
+                  Exporter toutes les données (JSON)
+                </button>
+                
+                <button type="button" 
+                        class="btn btn-success"
+                        (click)="exportInterviewsCSV()">
+                  <i class="fas fa-file-csv me-2"></i>
+                  Exporter les entretiens (CSV)
+                </button>
+                
+                <button type="button" 
+                        class="btn btn-info"
+                        disabled>
+                  <i class="fas fa-chart-pie me-2"></i>
+                  Rapport détaillé (PDF) - Bientôt
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

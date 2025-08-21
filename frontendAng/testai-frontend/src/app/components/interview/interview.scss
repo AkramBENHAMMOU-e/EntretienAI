@@ -1,0 +1,390 @@
+.interview-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  padding: 2rem 0;
+}
+
+.interview-header {
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+  padding: 2rem;
+  
+  h2 {
+    color: #2c3e50;
+    font-weight: 600;
+    
+    i {
+      color: #3498db;
+    }
+  }
+}
+
+.progress-container {
+  .progress {
+    border-radius: 10px;
+    background-color: #ecf0f1;
+    
+    .progress-bar {
+      border-radius: 10px;
+      background: linear-gradient(90deg, #3498db, #2980b9);
+      transition: width 0.6s ease;
+    }
+  }
+  
+  .progress-text {
+    font-size: 0.9rem;
+    color: #7f8c8d;
+  }
+}
+
+.interview-phase {
+  animation: fadeInUp 0.5s ease-out;
+  
+  .card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    }
+    
+    .card-header {
+      border: none;
+      padding: 1.5rem;
+      
+      h5 {
+        font-weight: 600;
+        margin: 0;
+        
+        i {
+          margin-right: 0.5rem;
+        }
+      }
+    }
+    
+    .card-body {
+      padding: 2rem;
+    }
+  }
+}
+
+.welcome-message {
+  h4 {
+    color: #2c3e50;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+  
+  p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    
+    strong {
+      color: #3498db;
+    }
+  }
+}
+
+.consent-section {
+  .form-check {
+    text-align: left;
+    
+    .form-check-input {
+      width: 1.2rem;
+      height: 1.2rem;
+      margin-right: 0.75rem;
+      border: 2px solid #bdc3c7;
+      
+      &:checked {
+        background-color: #3498db;
+        border-color: #3498db;
+      }
+    }
+    
+    .form-check-label {
+      font-size: 1rem;
+      color: #34495e;
+      line-height: 1.4;
+    }
+  }
+}
+
+.question-display {
+  .question-text {
+    color: #2c3e50;
+    font-weight: 600;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+  }
+  
+  .question-meta {
+    .badge {
+      font-size: 0.8rem;
+      padding: 0.5rem 0.75rem;
+      border-radius: 20px;
+    }
+  }
+}
+
+.answer-input {
+  .form-label {
+    color: #34495e;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+  }
+  
+  .form-control {
+    border: 2px solid #ecf0f1;
+    border-radius: 10px;
+    padding: 1rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    
+    &:focus {
+      border-color: #3498db;
+      box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.25);
+    }
+    
+    &::placeholder {
+      color: #bdc3c7;
+    }
+  }
+}
+
+.question-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  
+  .btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 25px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+    
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+  }
+}
+
+.completion-message {
+  i {
+    display: block;
+    margin: 0 auto 1rem;
+  }
+  
+  h4 {
+    color: #27ae60;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+  
+  p {
+    color: #7f8c8d;
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+}
+
+.next-steps {
+  h5 {
+    color: #2c3e50;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+  
+  ul {
+    li {
+      color: #34495e;
+      margin-bottom: 0.5rem;
+      font-size: 1rem;
+      
+      i {
+        width: 20px;
+        margin-right: 0.5rem;
+      }
+    }
+  }
+}
+
+.action-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  
+  .btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 25px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+  }
+}
+
+.phase-navigation {
+  .btn {
+    padding: 1rem;
+    border-radius: 10px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border-width: 2px;
+    
+    &:hover:not(:disabled) {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    }
+    
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+    
+    i {
+      display: block;
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+  }
+}
+
+// Animations
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .interview-container {
+    padding: 1rem 0;
+  }
+  
+  .interview-header {
+    margin-bottom: 1rem;
+    padding: 1rem;
+    
+    h2 {
+      font-size: 1.5rem;
+    }
+  }
+  
+  .interview-phase .card .card-body {
+    padding: 1.5rem;
+  }
+  
+  .question-actions {
+    flex-direction: column;
+    align-items: center;
+    
+    .btn {
+      width: 100%;
+      max-width: 300px;
+    }
+  }
+  
+  .action-buttons {
+    flex-direction: column;
+    align-items: center;
+    
+    .btn {
+      width: 100%;
+      max-width: 300px;
+    }
+  }
+  
+  .phase-navigation .row {
+    gap: 0.5rem;
+    
+    .col-md-3 {
+      margin-bottom: 0.5rem;
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .interview-header {
+    h2 {
+      font-size: 1.3rem;
+    }
+  }
+  
+  .welcome-message h4 {
+    font-size: 1.3rem;
+  }
+  
+  .question-text {
+    font-size: 1.1rem;
+  }
+  
+  .consent-section .form-check-label {
+    font-size: 0.9rem;
+  }
+}
+
+// Dark mode support
+@media (prefers-color-scheme: dark) {
+  .interview-container {
+    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+  }
+  
+  .interview-header {
+    background: #34495e;
+    
+    h2 {
+      color: #ecf0f1;
+    }
+  }
+  
+  .card {
+    background: #34495e;
+    color: #ecf0f1;
+    
+    .card-header {
+      background: #2c3e50 !important;
+    }
+  }
+  
+  .question-text {
+    color: #ecf0f1;
+  }
+  
+  .form-control {
+    background: #2c3e50;
+    border-color: #7f8c8d;
+    color: #ecf0f1;
+    
+    &:focus {
+      background: #2c3e50;
+    }
+  }
+}
