@@ -1,12 +1,13 @@
 import os
+import json
 from crewai import Agent, Crew, Process, Task, LLM
 from crewai.project import CrewBase, agent, crew, task
 from crewai.agents.agent_builder.base_agent import BaseAgent
 from typing import List
+from pathlib import Path
 from testai.tools.rag_tool import RAGSearchTool
 from testai.tools.ask_candidate_tool import AskCandidateTool
 from testai.tools.sim_candidate_tool import SimulatedCandidateTool
-from testai.tools.web_ask_tool import WebAskCandidateTool
 
 @CrewBase
 class Testai():
@@ -27,10 +28,7 @@ class Testai():
 
     # Agents
     def _tools_for_qna(self):
-        # Choose candidate interaction tool based on env switch
-        use_web = os.getenv('USE_WEB_UI', '0') in ('1', 'true', 'True')
-        if use_web:
-            return [WebAskCandidateTool()]
+        # Utilise uniquement les outils console
         return [AskCandidateTool(), SimulatedCandidateTool()]
 
     @agent

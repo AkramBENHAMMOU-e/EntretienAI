@@ -1,0 +1,2671 @@
+Université Mouloud Mammeri de Tizi-Ouzou
+Faculté des sciences économiques, commerciales et des sciences de gestion
+Département de commerce
+
+COURS DE COMPTABILITE
+ANALYTIQUE
+Pour les étudiants de deuxième année
+
+Chargé de cours : Badr-Eddine Benbouzid
+badreddine.benbouzid@ummto.dz
+
+Sommaire
+
+I)
+
+Présentation de la comptabilité analytique.
+1) Définition de la comptabilité analytique.
+2) Différence entre la comptabilité analytique et la comptabilité financière.
+3) Objectifs de la comptabilité analytique.
+4) Intrants de la comptabilité analytique.
+5) Les méthodes de la comptabilité analytique.
+
+II) La valorisation des sorties de stocks.
+1) Définition des stocks.
+2) Les types de stock.
+3) La comptabilité matière.
+4) Les méthodes de valorisation des sorties de stocks.
+
+III) Traitement des charges en comptabilité analytique.
+1)
+2)
+3)
+4)
+5)
+
+Définitions.
+La hiérarchie des coûts.
+Le processus de calcul des coûts.
+Les en-cours de production.
+Les produits résiduels.
+
+IV) Détermination des coûts intermédiaires et du coût de revient
+1) Calcul du coût d’approvisionnement.
+2) Calcul du coût de production.
+3) Calcul du coût de revient.
+
+Présentation de la comptabilité analytique
+
+1)
+
+Définition de comptabilité analytique :
+
+Technique qui consiste à analyser et à répartir les charges de la comptabilité
+financière afin de calculer les coûts des produits, des services, d’un département ou
+d’une entreprise. Elle constitue, en plus, un système d’information interne destiné à
+quantifier les flux internes et à contrôler les consommations.
+Elle s’attache à analyser les différentes étapes, les différents processus selon lesquels
+les ressources dont l’entreprise s’est assuré la disposition ont été combinées et
+transformées avant d’être remises dans le circuit de l’économie sous la forme de
+produits ou de services proposés à la clientèle.
+En outre le système d’analyse une fois mis en place débouche sur la production
+périodique d’une masse d’indicateurs chiffrés dont l’accumulation constitue un véritable
+outil d’aide à la planification et à la préparation des décisions.
+2)
+
+Différences entre la comptabilité analytique et la comptabilité financière :
+
+Il existe une relation étroite entre comptabilité financière et comptabilité analytique,
+cette relation se concrétise par le besoin de chacune des deux comptabilités.
+Critères de comparaison
+
+Comptabilité financière Comptabilité analytique
+
+1. Au regard de la loi
+
+Obligatoire et uniforme
+
+Facultative et diversifié
+
+2. Vision de l’entreprise
+
+Globale
+
+Détaillée
+
+3. Horizons temporel
+
+Passé
+
+Présent-Futur
+
+Financiers et juridiques
+
+Economiques et managériales
+
+Précise et Formelle
+
+Rapide et Pertinente
+
+6. Utilisations
+
+Externe
+
+Interne
+
+7. périodicité
+
+Annuelle
+
+Selon les besoins
+
+4. Objectifs
+5. Nature de l’information
+
+Tableau 1 : Différences entre la comptabilité analytique et la comptabilité financière
+
+3)
+
+Objectifs de la comptabilité analytique :
+
+La comptabilité analytique a pour mission de concrétiser un certains nombres
+d’objectifs :
+3.1) Calculer le coût de production :
+Cet objectif constitue le premier historiquement fixé à la comptabilité analytique. Il
+permet :
+- D’établir la stratégie commerciale à travers la fixation des prix de vente,
+l’établissement des devis, etc ;
+- De connaitre les économies d’échelle qu’entraîne l’augmentation de la production ;
+
+- D’évaluer la position de l’entreprise vis-à-vis de la concurrence ;
+- Enfin le calcul des coûts des produits fournit à la comptabilité financière les bases
+d’évaluation de certains éléments d’actif (ex : en-cours de production).
+3.2) La maitrise des coûts :
+Cet objectif s’appuie sur la division de l’entreprise en centres d’analyse. Ce qui
+permet :
+- D’établir des prévisions plus précises parce qu’élaborées au niveau même de
+l’engagement des coûts ;
+- D’apprécier séparément les politiques d’approvisionnement, de production, de
+marketing, etc ;
+- D’isoler et de contrôler les coûts administratifs ;
+- De mettre en place des programmes de réduction des coûts.
+3.3) La préparation des décisions :
+La comptabilité analytique moderne permet de répondre à des questions variées du
+type :
+- Doit-on recourir à la sous-traitance pour telle opération ?
+- Doit-on acquérir, prendre en location, ou en crédit-bail tel équipement ?
+- Doit-on accepter de prendre une commande à telles conditions par le client ?
+- En présence d’un goulet d’étranglement qui limite la capacité de production,
+quels sont les produits à développer au détriment de quels autres produits ?
+Bien entendu la préparation des décisions est par essence non répétitive, chaque
+problème étant singulier soit par sa nature, soit par les circonstances particulières dans
+lesquelles il se pose. Il ne peut donc être question de chiffres tous prêts. Chaque
+problème nécessite une analyse spécifique et le recours au concept de coût le mieux
+approprié.
+Intrants1 de la comptabilité analytique :
+
+4)
+
+Comme tout système, la comptabilité analytique à besoin d’input pour fonctionner et
+concrétiser les objectifs, cités plus haut :
+4.1) Données de la comptabilité financière :
+Les charges de la comptabilité financière qui mesurent les consommations de biens et
+de services constituent la « matière première » de la comptabilité analytique.
+Pour autant l’information comptable n’est pas admise dans le réseau d’analyse à l’état
+brut. Elle est soumise à des retraitements qui visent à cerner de plus près les réalités
+économiques. Ces redressements consistent dans les opérations suivantes :
+1
+
+Exclusion des charges non incorporables ;
+
+Terme économique désignant les éléments entrants dans la production d’un bien.
+
+-
+
+Incorporation de charges supplétives ;
+Introduction de charges de substitution ;
+Abonnement de certaines charges.
+
+4.2) Données spécifiques :
+En plus de l’information comptable, la comptabilité analytique utilise des données
+spécifiques constituées par diverses grandeurs physiques : quantités de matières
+consommées, nombre d’heures de travail, temps de fonctionnement des machines,
+nombre d’unités fabriquées,…
+Ces informations se caractérisent par leurs hétérogénéités et la diversité de leurs
+sources. C’est en effet dans les magasins, les ateliers, les dépôts et les points de vente
+que peuvent être identifiés et enregistrés les flux physiques de matières et les
+consommations de services.
+Ce caractère universel implique une importante conséquence : contrairement à la
+comptabilité générale qui peut fonctionner en vase clos, la comptabilité analytique exige
+l’implication et l’adhésion de l’ensemble des salariés.
+5)
+
+Les méthodes de la comptabilité analytique :
+
+Selon les objectifs et les contraintes de gestion l’entreprise aura recours à des coûts
+complets ou des coûts partiels.
+5.1) Méthodes de calcul des coûts complets :
+En système de coûts complets, toutes les charges introduites dans le réseau analytique
+sont acheminées jusqu’aux coûts de revient.
+Les charges directes ayant été affectées aux produits, les méthodes de calcul des coûts
+de revient complets se proposent de répartir, entre les différents produits, les charges
+indirectes incorporées. On distingue :
+a)
+
+La méthode de l’imputation globale : Cette méthode fréquemment utilisée dans les
+petites entreprises consiste à ventiler les charges indirectes :
+- Au prorata du chiffre d’affaires ;
+- Au prorata des charges directes ;
+- Ou au prorata des heures de main-d’œuvre directe ou des heures-machine selon
+que la main-d’œuvre ou la machine constitue le facteur de production prépondérant.
+
+b)
+
+La méthode des centres de frais : Cette méthode consiste à :
+- Ventiler les charges indirectes entre les principales fonctions de l’entreprise
+(approvisionnement, production, distribution, administration) ;
+- Choisir et calculer les coefficients d’imputation des charges indirectes, chaque
+subdivision des charges indirectes donnant lieu à la détermination d’un coefficient
+
+qui sera particulier à la fonction considérée et servira à la répartition des charges
+indirectes de ladite fonction entre les différents produits.
+c)
+
+La méthode des sections homogènes : La méthode des sections homogènes
+comporte les étapes suivantes :
+- Découpage de l’entreprise en centres d’analyse. Les centres d’analyse sont
+distingués en centres principaux et centres auxiliaires ;
+- Ventilation de l’ensemble des charges incorporées en charges directes et charges
+indirectes par rapport aux produits ;
+- Affectation des charges directes aux produits ;
+- Imputation des charges indirectes entre les divers centres d’analyse.
+- Traitement des cessions de prestations entre les centres d’analyse.
+- Imputation des charges indirectes aux produits.
+- Détermination des coûts et coûts de revient.
+
+d)
+
+Méthode de l’imputation rationnelle : La méthode de l’imputation rationnelle a
+pour objet d’aménager les coûts complets et d’en faire des indicateurs de gestion
+permettant de maîtriser les conditions internes d’exploitation.
+Cet objectif ne peut être réalisé qu’à la condition de rendre plus significatives les
+variations constatées dans le coût des unités d’œuvre et des produits en éliminant
+l’incidence des variations d’activité.
+La méthode de l’imputation rationnelle consiste à n’imputer les charges de
+structure aux coûts que dans la mesure réelle de l’utilisation des capacités et
+moyens disponibles. Les charges de structure imputées sont déterminées en
+pondérant les charges réelles par le rapport activité réelle / activité normale.
+
+5.2) Méthodes de calcul des coûts partiels :
+En système de coûts partiels, une partie seulement des charges introduites dans le
+réseau analytique est acheminée jusqu’aux coûts de revient.
+On distingue généralement deux méthodes de calcul des coûts partiels qui sont :
+a)
+
+Méthode du coût variable : cette méthode est basée sur la distinction entre charges
+d’activité et charges de structure. Le coût variable est constitué par les seules
+charges qui varient avec le volume d’activité de l’entreprise. Les charges
+d’activité, qui peuvent être directes (matières premières, main-d’œuvre directe) ou
+indirectes (énergie, matières consommables) sont affectées aux comptes de coûts.
+Les charges de structure sont considérées comme des charges de période et, à ce
+titre, imputées au compte de résultat analytique.
+
+b)
+
+Méthode du coût direct : La méthode du coût direct consiste à :
+- affecter aux produits et aux activités l’ensemble des charges directs, qu’ils soient
+variables ou fixes ;
+
+- à imputer les charges indirectes dont la répartition peut être fait sans ambiguïté
+sur des bases rationnelles. Il s’agit des charges indirectes pour lesquelles il existe une
+bonne corrélation entre les valeurs à répartir et le facteur de répartition ; celles-ci sont
+assimilables aux charges directes ;
+- à considérer comme charges de période, donc à acheminer globalement vers le
+compte de résultat analytique, les charges indirectes dont la répartition ne peut être
+faite que sur des bases conventionnelles, toujours discutables et entachées
+d’arbitraire.
+
+La valorisation des sorties de stocks
+
+1)
+
+Définition des stocks :
+
+Les stocks représentent les biens achetés, ou issus du cycle de production ; dans le but
+d’être vendus, réparés, jetés ou utilisés par l’entreprise. (Matières premières,
+marchandises, produits finis, produits semi-finis, produits encours de production,
+Produits "défectueux" ou obsolète devant être "mis à jour" ou réparé, déchet,
+emballages)
+Le stockage, ou entreposage, est l'action d’entreposer, c'est-à-dire de placer à un endroit
+identifié des objets ou des matières dont on veut pouvoir disposer rapidement en cas de
+besoin.
+Le stock permet de gérer les articles disponibles dans l'entreprise en vue de satisfaire les
+besoins à venir à l'aide d'outils logistiques et d'un système d'information performant
+pour l'organisation.
+Ces besoins seront à satisfaire au bon moment, dans les bonnes quantités et d'une
+manière permettant la bonne utilisation du stock. Si l'on n'est pas capable de satisfaire
+un besoin à l'aide du stock correspondant, on parle de rupture de stock.
+Tout l'art de cette gestion est d'avoir suffisamment de stock pour répondre correctement
+aux besoins et pas trop pour ne pas supporter les différents coûts du stock (coût
+d'acquisition, coût de stockage, coût de dévalorisation, etc.).
+2)
+
+La comptabilité matière (inventaire permanent) :
+
+Il est évident qu’il ne peut y avoir de comptabilité analytique sans comptabilité
+matières, les matières et fournitures consommées constituant une composante
+essentielle du coût des produits industriels.
+La comptabilité matières se fixe pour but d’organiser un contrôle rigoureux des
+existants et des flux physiques et d’assurer une traduction comptable correcte des
+mouvements de matières, elle recouvre les domaines suivants :
+-
+
+La saisie des flux physiques de matières des magasins (entrée et sortie) ;
+Le calcul du coût des matières à l’entrée des stocks ;
+La valorisation des consommations des matières.
+
+2.1) La saisie des flux physiques :
+Deux fonctions assurent la mise à disposition des matières nécessaires au
+fonctionnement de l’entreprise : l’approvisionnement et le magasinage.
+2.2) Le calcul du coût d’entrée :
+Le coût d’acquisition des matières est déterminé par l’addition du prix d’achat et des
+frais accessoires.
+
+Les frais accessoires comprennent les frais accessoires d’achat (ex : transports,
+courtages, commissions, ….) et les frais accessoires d’approvisionnement (préparation
+des achats, réception et contrôle des achats, …).
+2.3) La valorisation des consommations des matières :
+Cette étape consiste à donner une valeur monétaire aux matières qui sortent des
+stocks, cependant cette opération n’est pas aussi simple que ça. Car au premier regard
+on pourrait penser qu’il suffit de valoriser une sortie de stocks à sa valeur d’entrée. Se
+pose alors la problématique liée à la gestion des stocks : les matières reçues à des dates
+différentes et de fournisseurs différents, donc à des coûts différents sont le plus souvent
+rigoureusement identiques et se fondent dans un stock uniforme. De sorte que le coût
+réel d’une unité prélevée sur ce stock est parfaitement inconnu.
+Et c’est dans l’optique de résoudre cette problématique que des méthodes de
+valorisation des sorties de stocks sont apparus.
+3)
+
+Les méthodes de valorisation des sorties de stocks :
+
+La valorisation des sorties de stock nécessite donc le choix d’une méthode de gestion
+comptable des inventaires permanents.
+Parmi les techniques les plus courantes on peut citer :
+4.1) La méthode du coût unitaire moyen pondéré (Cump) :
+Elle consiste à calculer pour chaque nature de matières le coût moyen unitaire pondéré
+en divisant le coût total des entrées successives par leur quantité totale et à appliquer ce
+coût ainsi déterminé aux sorties de la période considérée.
+Les deux principales variantes de cette méthode sont :
+a)
+
+le coût moyen pondéré de la période calculé en une seule opération au dernier jour
+de la période. Cette variante implique que la détermination de la valeur unitaire des
+sorties ne peut avoir lieu qu’en fin de période.
+
+b)
+
+Le coût moyen pondéré mobile recalculé après chaque nouvelle entrée.
+
+4.2) La méthode du premier entré – premier sorti (Fifo) :
+La méthode du premier entré – premier sorti (FIFO) qui considère que les matières
+entrées les premières doivent sortir les premières et qui évalue donc les sorties au coût
+des entrées les plus anciennes.
+4.3) La méthode du dernier entré – dernier sorti (Lifo) :
+La méthode du dernier entré – dernier sorti (LIFO) qui considère que les sorties
+doivent être valorisées au coût des entrées les plus récentes.
+
+Quelle que soit la méthode retenue, le travail strictement comptable consiste à :
+- tenir un journal chronologique des sorties à partir des bons de sortie ;
+- et à mettre à jour les fiches d’inventaire permanent.
+4)
+
+Les types de stock :
+
+Stock initial, Stock final, Stock minimal, Stock moyen, …
+SI + E = SF + S :
+stock
+
+Stock initial
+
+Entrées
+
+Sorties
+
+Stock final
+
+- Marchandises
+
+Stock initial
+
+Achats
+
+Ventes
+
+Stock final
+
+- Matières premières
+
+Stock initial
+
+Achats
+
+utilisations
+
+Stock final
+
+- Produits semi-finis
+
+Stock initial
+
+productions
+
+utilisations
+
+Stock final
+
+- Produits finis
+
+Stock initial
+
+productions
+
+Ventes
+
+Stock final
+
+- ???
+
+Stock initial
+
+Achats
+
+Ventes
+
+Stock final
+
+Traitement des charges en comptabilité analytique
+(Selon la méthode des sections homogènes)
+
+1)
+
+Définition(s) :
+
+Centre d’analyse (les sections) : Correspond à une division de l'unité comptable
+dans laquelle seront analysés des éléments de charges indirectes avant leur imputation
+aux coûts des produits intéressés (centre d’analyse principal et centre
+d’analyse auxiliaire).
+Charges directes et charges indirectes : On appelle charge directe une charge qui
+est spécifique à une seule destination (un seul produit, un seul centre de coût, ….) et
+indirecte une charge commune à plusieurs niveaux d’analyse.
+Traitement des charges : les charges doivent subirent un certain nombre de
+traitement que sont :
+- la ventilation : séparation entre charge directe et charge indirecte ;
+- le reclassement : reclasser par destination les charges qui été classée par nature ;
+- L’affectation : l’opération de transfert qui consiste à rattacher, sans arbitraire et
+sans calcul intermédiaire, une charge directe à un niveau d’analyse déterminé ;
+- L’imputation : le rattachement d’une charge indirecte à un objet de coût.
+Un objet de coût est tout élément pour lequel une mesure séparée du coût est jugée
+utile (un produit, un service, un client, une marque, un département, etc).
+2)
+
+La hiérarchie des coûts :
+
+La hiérarchie des coûts dépend essentiellement de la nature d’activité de l’entreprise
+et de son cycle d’exploitation.
+2.1) Cycle d’exploitation dans une entreprise commerciale :
+
+Achats de
+marchandises
+
+Stockage de
+marchandises
+
+Ventes de
+marchandises
+
+a)
+
+Coût d’acquisition = prix d’achat + frais accessoires d’acquisition + charges
+indirectes.
+(Frais accessoires d’achat : transports, courtages, commissions, … / frais
+accessoires d’approvisionnement : préparation des commandes, réception et
+contrôle des achats, …)
+
+b)
+
+Coût de revient = coût d’acquisition + frais de distribution + charges indirectes.
+(Frais de distribution : transport, publicité, démarchage, …).
+
+2.2) Cycle d’exploitation dans une entreprise industrielle :
+
+Achats de
+matières
+premières
+
+Stockage
+de matières
+premières
+
+Stockage
+de produits
+finis
+
+Production
+de produits
+finis
+
+Ventes de
+produits
+finis
+
+a)
+
+Coût d’acquisition = prix d’achat + frais accessoires d’acquisition + charges
+indirectes.
+(Frais accessoires d’achat : transports, courtages, commissions, … / frais
+accessoires d’approvisionnement : préparation des commandes, réception et
+contrôle des achats, …)
+
+b)
+
+Coût de production = coût d’acquisition + frais de production + charges indirectes.
+
+c)
+
+Coût de revient = coût de production + frais de distribution + charges indirectes.
+(Frais de distribution : transport, publicité, démarchage, …).
+
+Il est à noter qu’il peut y avoir plusieurs étapes dans le calcul du coût de
+production, selon la nature du produit : coût de production des produits semi-finis.
+2.3) Cycle d’exploitation dans une entreprise de service :
+Achats
+d’approvisionnement
+
+Stockage
+d’approvisionnement
+
+Production de
+service (servuction)
+
+Prestation
+de service
+
+a)
+
+Coût d’acquisition = prix d’achat + frais accessoires d’acquisition + charges
+indirectes.
+(Frais accessoires d’achat : transports, courtages, commissions, … / frais
+accessoires d’approvisionnement : préparation des commandes, réception et
+contrôle des achats, …)
+
+b)
+
+Coût de production = frais de production + charges indirectes.
+
+c)
+
+Coût de revient = coût de production + frais de prestation + charges indirectes.
+(Frais de prestation : publicité, démarchage, …).
+
+3)
+
+Le processus de calcul des coûts :
+
+La méthode des sections homogènes comporte les étapes suivantes :
+3.1) Le découpage de l’entreprise en centres d’analyse :
+Dans l’optique de calcul des coûts de revient, les centres d’analyse, doivent être
+caractérisés par la similitude des moyens (hommes, machines) qu’ils regroupent et des
+prestations qu’ils fournissent. C’est ce caractère d’homogénéité qui garantit la précision
+
+de l’imputation des charges indirectes des centres d’analyse. Il existe deux types de
+centre d’analyse : centre d’analyse principal et centre d’analyse auxiliaire.
+Les centres de calcul ne sont pas seulement utiles pour le calcul des coûts, ils le sont
+également pour la mise en cause de responsabilités dans l’évolution des charges.
+3.2) Le retraitement de l’information comptable :
+Pour la réalisation des objectifs qui lui sont assignés, la comptabilité analytique
+effectue sur l’information comptable introduite dans le réseau d’analyse un certain
+nombre de traitements qui vise à l’approcher de la réalité économique :
+a)
+
+L’exclusion des charges non incorporables :
+
+Sont qualifiées de charges non incorporables les éléments qui bien que contribuant à
+la détermination du résultat ne correspondent pas vraiment aux conditions normales de
+fonctionnement et de réalisation de l’objet de l’entreprise :
+- les charges concernant des exercices antérieurs ;
+- les charges exceptionnelles ;
+- l’impôt sur le bénéfice des sociétés.
+b)
+
+L’incorporation de charges supplétives :
+
+Les charges supplétives sont des charges fictives non enregistrées en comptabilité
+financière, introduites dans le réseau analytique lorsqu’on se propose de calculer des
+coûts indépendants du mode de financement et du régime juridique de l’entreprise. Les
+plus usuelles de ces charges supplétives sont :
+- la rémunération normale du travail du chef d’entreprise ;
+- la rémunération conventionnelle des capitaux propres.
+c)
+
+L’introduction de charges de substitution :
+
+L’introduction de charges de substitution dans le circuit de la comptabilité analytique
+participe de la volonté de l’entreprise de donner aux calculs analytiques une plus grande
+valeur économique. Ainsi l’on peut décider de remplacer dans les calculs analytiques :
+- les amortissements par les charges d’usage ou amortissements économiques.
+d)
+
+L’abonnement de certaines charges :
+
+Cette opération vise l’adaptation de la périodicité des charges à la fréquence des
+calculs analytiques. Elle consiste dans le partage de celles-ci en fractions égales
+correspondant à la fréquence des calculs.
+3.3) La ventilation des charges :
+C’est la séparation des charges incorporées en charges directes et charges indirectes.
+On appelle charge directe une charge qui est spécifique à une seule destination (un seul
+
+produit, un seul centre de coût, ….) et indirecte une charge commune à plusieurs
+niveaux d’analyse.
+3.4) L’affectation des charges directes :
+Quand l’objectif de l’analyse est limité au calcul des coûts de revient, les charges
+directes n’ont plus raison de transiter par les centres, elles sont directement acheminées
+vers les comptes de coûts concernés.
+On désigne par « affectation » l’opération de transfert qui consiste à rattacher, sans
+arbitraire et sans calcul intermédiaire, une charge directe à un niveau d’analyse
+déterminé. Cette opération relève d’une simple constatation et ne dépend que de la
+bonne saisie de l’information.
+3.5) L’imputation des charges indirectes :
+L’imputation des charges indirectes implique un traitement préalable plus ou moins
+arbitraire et aussi une série de traitements impliquant généralement leur transit dans des
+centres d’analyse.
+Ces éléments de charges doivent pouvoir être rapportés à une unité commune dite
+« unité d’œuvre », car, au terme des opérations d’analyse, c’est cette unité d’œuvre qui
+permettra de mesurer la part de frais de chaque centre qui se rapporte effectivement au
+coût de tel ou tel niveau d’analyse.
+En l’absence d’une unité d’œuvre, la répartition est réalisée au moyen d’un « taux de
+frais » calculé en fonction d’une assiette conventionnelle exprimée en valeur.
+Cette opération comporte trois étapes :
+4.1) La répartition primaire : reclassement des charges indirectes par destination :
+Classées par nature en comptabilité générale les charges doivent être reclassées par
+destination (centre d’analyse).
+4.2) La répartition secondaire : traitement des cessions de prestations entre les centres
+d’analyses :
+Cette étape consiste dans le déversement des coûts des centres auxiliaires dans les
+centres principaux. Cette étape comporte également la résolution du problème lié aux
+prestations réciproques entre centres auxiliaires.
+Ce problème peut se résoudre de plusieurs façons :
+- Annulation pure et simple des prestations réciproques. Cette solution peut se
+justifier lorsque les montants en jeu ne sont pas significatifs ;
+- Itérations successives. Cette méthode est lourde et d’une application laborieuse
+quand les sections auxiliaires sont nombreuses ;
+
+- Résolution algébrique. Cette méthode consiste à établir et à résoudre un système
+de n équations à n inconnues, n étant le nombre de centres impliqués dans les
+transferts croisés.
+4.3) Imputation des charges indirectes aux produits :
+Cette étape consiste dans l’allocation du coût des centres principaux aux coûts des
+produits en fonction des unités d’œuvre utilisées. Cette étape nécessite la détermination
+d’une unité d’œuvre pour les centres considérés.
+Le choix d’une unité d’œuvre suppose une observation attentive de cette activité et
+exigera éventuellement une analyse de corrélation entre les variations du coût variable
+du centre et les variations des unités d’œuvre pressenties (l’heure de main-d’œuvre,
+l’heure machine, l’unité de produit). Lorsqu’il sera difficile voire impossible de
+rapporter le coût du centre d’analyse à une unité physique, on retiendra une unité
+monétaire permettant de répartir le coût entre les différents produits concernés.
+Le coût de l’unité d’œuvre est obtenu en divisant le total des charges indirectes
+imputées au centre par le nombre d’unités d’œuvre.
+
+Détermination des coûts intermédiaires et du coût de
+revient
+
+1)
+
+Le tableau de calcul du coût d’approvisionnement :
+
+A l’aide du tableau qui suit, on va calculer le coût d’approvisionnement des achats
+(matières premières, marchandises, etc) de l’entreprise, en incorporant :
+- Le prix d’achat mentionné sur la facture ;
+- Les "autres" charges directes d’approvisionnement ;
+- Les charges indirectes d’approvisionnement, qui seront directement prélevées du
+tableau de répartition des charges indirectes.
+Il est important de signaler que lorsqu’il existe des stocks précédant, et que la
+méthode de valorisation des sorties de stock est la méthode du "CMUP", il est nécessaire
+de calculer le coût global lors de chaque achat.
+Produit 1
+
+Produit 2
+
+...
+
+Libellé
+Quantité
+
+Prix unitaire
+
+Montant
+
+Quantité
+
+Prix unitaire
+
+Montant
+
+...
+
+Prix d’achat :
+Charges directes :
+
+...
+
+Charges indirectes :
+Coût de la période
+
+...
+
+Stock initial :
+
+...
+
+Coût global
+
+2)
+
+...
+
+Le tableau de calcul du coût de production :
+
+A l’aide du tableau qui suit, on va calculer le coût de production des produits
+(produits finis, produits semi-finis, etc) de l’entreprise, en incorporant :
+- Le coût d’approvisionnement des matières premières utilisées ;
+- Les "autres" charges directes de production (heures machines, main-d’œuvre) ;
+- Les charges indirectes de production, qui seront directement prélevées du tableau
+de répartition des charges indirectes.
+Il est important de signaler que lorsqu’il existe des stocks précédant, et que la
+méthode de valorisation des sorties de stock est la méthode du " CMUP", il est nécessaire
+de calculer le coût global lors de chaque achat.
+
+Produit 1
+
+Produit 2
+
+...
+
+Libellé
+Quantité
+
+Prix unitaire
+
+Montant
+
+Quantité
+
+Prix unitaire
+
+Montant
+
+...
+
+Prix d’achat :
+Charges directes :
+
+...
+
+Charges indirectes :
+Coût de la période
+
+...
+
+Stock initial :
+
+...
+
+Coût global
+
+3)
+
+...
+
+Le tableau de calcul du coût de revient :
+
+A l’aide du tableau qui suit, on va calculer le coût de revient des ventes (produits
+finis, produits semi-finis, marchandises, etc) de l’entreprise, en incorporant :
+- Le coût de production des produits vendus ou le coût d’approvisionnement des
+matières premières utilisées
+- Les "autres" charges directes de distribution ;
+- les charges indirectes de distribution, qui seront directement prélevées du tableau
+de répartition des charges indirectes.
+Produit 1
+
+Produit 2
+
+...
+
+Libellé
+Quantité
+
+Prix unitaire
+
+Montant
+
+Quantité
+
+Prix unitaire
+
+Montant
+
+...
+
+Prix d’achat :
+Charges directes :
+
+...
+
+Charges indirectes :
+Coût de la période
+
+...
+
+Stock initial :
+
+...
+
+Coût global
+
+...
+
+Université Mouloud Mammeri de Tizi-Ouzou.
+Faculté Des sces Economiques, Des Sces De Gestion Et Commerciales.
+Département Des Sces Commerciales.
+Année LMD
+Module : Comptabilité Analytique.
+
+TD N°01 : Méthodes d’écoulement des stocks
+
+Exercice 1 :
+Les données suivantes proviennent des registres de mouvements de stocks du mois d’avril, concernant
+l’article A :
+•
+•
+•
+•
+•
+•
+•
+•
+•
+
+Au
+Avril, le stock initial de ??? unités à 20 DA l’unité ;
+05/04 : entrée en stock de 120 unités à 17,12 DA l’unité ;
+08/04 : sortie de stock de 140 unités ;
+14/04 : entrée en stock de 40 unités à 14,19 DA l’unité ;
+17/04 : entrée en stock de 30 unités à 19,06 DA l’unité ;
+18/04 : sortie de stock de 200 unités ;
+24/04 : entrée en stock de 150 unités à 17,42 DA l’unité ;
+31/04 : sortie de stock de 160 unités ;
+Stock final de 40 unités.
+
+T.A.F : Etablir la fiche de stock en quantités et en valeurs pour l’article A en utilisant la méthode
+du CMUP (Cout Unitaire Moyen Pondéré).
+Exercice 2 :
+Durant la 1ère quinzaine du mois de novembre 2014, l’unité industrielle « Mode Vet » a connu les
+mouvements des stocks de la matière première M suivants :
+•
+•
+•
+•
+•
+•
+•
+
+Au
+Novembre, le stock étais de 500 Kgs à 40 DA le Kg ;
+Le 5/11 : Entrée de stock de 1000 Kgs à 45 DA le Kg ;
+Le 07/11 : Sortie des stocks de 600 Kgs ;
+Le 09/11 : Sortie des stocks de 700 Kgs ;
+Le 10/11 : Entrée de stock de 1200Kgs à 42 DA le Kg ;
+Le 12/11 : Sortie des stocks de 750 Kgs ;
+Le 13/11 : Pour des raisons techniques, 300 Kgs des matières sorties le 07/11 sont retournés au
+magasin ;
+• Le 14/11 : Sortie des stocks de 600 Kgs ;
+T.A.F : Etablir la fiche de stock en quantités et en valeurs pour la matière M en utilisant :
+1. La méthode de FIFO (First In, First Out);
+2. La méthode de LIFO (Last In, First Out).
+
+Corrigé du TD No 01 A
+
+• Exercice 1 :
+La méthode du CMUP :
+SI + E = SF + S
+En quantité : SI + (120 + 40 + 30 + 150) = 40 + (140 + 200 + 160)
+SI + 340 = 540
+SI = 540-340
+SI = 200* unités de l’article A
+
+Entrée
+Date
+
+Sortie
+
+Stocks
+
+Libellé
+Q
+
+Pu
+
+V
+
+Q
+
+Pu
+
+V
+
+Q
+
+Pu
+
+V
+
+200*
+
+20,00
+
+4000
+
+320
+
+18,92
+
+6054,4
+
+180
+
+18,92
+
+3405,6
+
+01-avr
+
+SI
+
+05-avr
+
+Entrée
+
+08-avr
+
+Sortie
+
+14-avr
+
+Entrée
+
+40
+
+14,19
+
+567,6
+
+220
+
+18,06
+
+3973,2
+
+17-avr
+
+Entrée
+
+30
+
+19,06
+
+571,8
+
+250
+
+18,18
+
+4545
+
+18-avr
+
+Sortie
+
+50
+
+18,18
+
+909
+
+24-avr
+
+Entrée
+
+200
+
+17,61
+
+3522
+
+31/04/2015
+
+Sortie
+
+40
+
+17,61
+
+704,4
+
+120
+
+17,12
+
+2054,4
+140
+
+200
+150
+
+17,42
+
+18,92
+
+18,18
+
+2648,8
+
+3636
+
+2613
+160
+
+17,61
+
+2817,6
+
+• Exercice 2 :
+1- La méthode FIFO :
+Entrée
+Date
+
+Sortie
+
+Stocks
+
+Libellé
+Q
+
+Pu
+
+V
+
+Q
+
+Pu
+
+V
+
+Q
+
+Pu
+
+V
+
+500
+
+40
+
+20000
+
+500
+1000
+
+40
+45
+
+20000
+45000
+
+01- nov
+
+SI
+
+05- nov
+
+Entrée
+
+07- nov
+
+Sortie
+
+500
+100
+
+40
+45
+
+20000
+4500
+
+900
+
+45
+
+40500
+
+09- nov
+
+Sortie
+
+700
+
+45
+
+31500
+
+200
+
+45
+
+9000
+
+10- nov
+
+Entrée
+
+200
+1200
+
+45
+42
+
+9000
+50400
+
+12- nov
+
+Sortie
+
+650
+
+42
+
+27300
+
+13- nov (R)
+
+Entrée
+
+200
+100
+650
+
+40
+45
+42
+
+8000
+4500
+27300
+
+14- nov
+
+Sortie
+
+350
+
+42
+
+14700
+
+1000
+
+1200
+
+45
+
+42
+
+45000
+
+50400
+200
+550
+
+100
+200
+
+45
+40
+
+45
+42
+
+9000
+23100
+
+4500
+8000
+200
+100
+300
+
+40
+45
+42
+
+8000
+4500
+12600
+
+2- La méthode LIFO :
+Entrée
+Date
+
+Sortie
+
+Stocks
+
+Libellé
+Q
+
+Pu
+
+V
+
+Q
+
+Pu
+
+V
+
+Q
+
+Pu
+
+V
+
+500
+
+40
+
+20000
+
+500
+1000
+
+40
+45
+
+20000
+45000
+
+01- nov
+
+SI
+
+05- nov
+
+Entrée
+
+07- nov
+
+Sortie
+
+600
+
+45
+
+27000
+
+500
+400
+
+40
+45
+
+20000
+18000
+
+09- nov
+
+Sortie
+
+400
+300
+
+45
+40
+
+18000
+12000
+
+200
+
+40
+
+8000
+
+10- nov
+
+Entrée
+
+12- nov
+
+Sortie
+
+13- nov (R)
+
+Entrée
+
+14- nov
+
+Sortie
+
+200
+1200
+200
+450
+200
+300
+450
+200
+150
+
+40
+42
+40
+42
+40
+45
+42
+40
+45
+
+8000
+50400
+8000
+18900
+8000
+13500
+18900
+8000
+6750
+
+1000
+
+1200
+
+300
+
+45
+
+42
+
+45
+
+45000
+
+50400
+750
+
+42
+
+31500
+
+450
+150
+
+42
+45
+
+18900
+6750
+
+13500
+
+Université Mouloud MAMMERI Tizi-Ouzou.
+Faculté des sciences économiques, commerciales et sciences de gestions.
+Département sciences commerciales.
+
+Niveau :
+Année LMD
+Module : Comptabilité Analytique.
+
+TD N°02
+L’entreprise de fabrication de matériaux de construction « EPT » fabrique des parpaings et des tuyaux en
+utilisant du sable et du ciment, elle souhaiterait connaitre la rentabilité de ses deux produits, pour ce faire, elle
+vous communique les renseignements suivants pour la période de novembre 2014 :
+1/ Tableau de répartition des charges par fonction :
+Charges
+
+Montants
+
+F. personnel
+Impôts et taxes
+Fournitures
+Transport
+Frais divers
+Frais financiers
+Dotat. Amort
+
+10 000
+4 000
+2 000
+3 220
+1 500
+600
+?
+
+Adm et
+finance
+10%
+10%
+20%
+100%
+20%
+
+Achats
+10%
+20%
+50%
+20%
+10%
+
+Production
+Parpaings
+Tuyaux
+30%
+30%
+30%
+30%
+20%
+20%
+30%
+20%
+
+Distribution
+20%
+90%
+20%
+50%
+20%
+20%
+
+Renseignements concernant les charges :
+- Le montant mensuel des dotations est de 3 100DA, dont 100DA d’amortissements des frais préliminaires ;
+- Il faut tenir compte de la rémunération des fonds propres engagés (36 000DA) à un taux annuel de 10%,
+imputable à la fonction Administration et Finance ;
+- Les frais administratifs et financiers doivent être virées aux autres fonctions à raison de ¼ pour chaque
+colonne ;
+- Les frais d’achat sont à répartir entre les matières premières proportionnellement aux quantités ;
+- Enfin, les frais de distribution sont affectés aux deux produits selon les unités vendues.
+2/ Stocks au 1er Novembre :
+- Parpaings : 5 400 unités à 12 DA l’unité ;
+- Tuyaux : 1 100 unités à 20 DA l’unité ;
+- Il n’y a pas de stock de sable et de ciment.
+3/ Achats du mois de novembre :
+- Sable : 300 tonnes à 800 DA la tonne ;
+- Ciment : 15 tonnes à 4 000 DA la tonne.
+4/ consommation de matières, production et ventes du mois :
+Produits
+
+Sable consommé
+
+Ciment consommé
+
+Unités produits
+
+Unités vendues
+
+PVU
+
+Méthode de sortie
+
+Parpaings
+Tuyaux
+
+200 tonnes
+100 tonnes
+
+10 tonnes
+5 tonnes
+
+25 000 unités
+5 000 unités
+
+20 000 unités
+4 000 unités
+
+12,5
+21
+
+FIFO
+LIFO
+
+TAF : 1) Compléter le tableau de répartition des charges par fonction ;
+2) Calculer les différents couts et le résultat analytique de l’entreprise ;
+
+3) trouver le résultat de la CG a partir du résultat analytique.
+
+Corrigé TD N°02 : Les couts est le cout de revient
+I/ Tableau de répartition des charges par fonction :
+Production
+
+MT charges
+(CG) par nature
+
+Adm et
+Finance
+
+Achats
+
+Frais de pers ..
+
+10000
+
+1000
+
+1000
+
+Impot et Taxes
+
+4000
+
+400
+
+Fournitures
+
+2000
+
+400
+
+Transprt
+
+3220
+
+1610
+
+F.Divers
+
+1500
+
+300
+
+300
+
+300
+
+300
+
+300
+
+F.Financiers
+DOT. Amort
+
+600
+3000
+
+600
+600
+
+300
+
+900
+
+600
+
+600
+
+E.Suppletif
+
+300
+
+300
+
+Total
+REP 2
+ADM ET Finance
+
+24620
+
+3200
+
+3610
+
+4800
+
+4500
+
+8510
+
+(-3200)
+
+800
+
+800
+
+800
+
+800
+
+Toutaux 2
+
+24620
+
+0
+
+4410
+
+5600
+
+5300
+
+9310
+
+MT
+
+Charges
+
+P
+3000
+
+Distribution
+
+T
+3000
+
+2000
+3600
+
+600
+
+600
+
+400
+1610
+
+•
+
+3100-100(Charge Non-incorporable)=3000 (dotation aux amortissements)
+
+•
+
+ES=
+
+II/ calcul des couts et du résultat analytique :
+1 . Cout d’achat du sable et du ciment
+Q
+
+sable
+PU
+
+MT
+
+Q
+
+ciment
+PU
+
+Prix d’achat MP
+FRAIS D’achat
+
+300
+300
+
+800
+14*
+
+240000
+4200
+
+15
+15
+
+4000
+14*
+
+60000
+210
+
+COUT D’ACHAT
+
+300
+
+814
+
+244200
+
+15
+
+4014
+
+60210
+
+D
+
+Le taux de répartition des frais d’achat
+*=
+2. Cout de production des parpaings et des tuyaux
+P
+
+D
+Q
+
+PU
+
+T
+MT
+
+Q
+
+PU
+
+MT
+
+Cout d’achat MP (consommé) SABLE
+Cout d’achat MP (consommé) CIMENT
++
+F. DE FABRICATION
+
+200
+10
+
+814
+4014
+
+COUT DE PRODU
+
+25000
+
+162800
+40140
+
+100
+5
+
+814
+4014
+
+81400
+20070
+
+5600
+8.3416
+
+208540
+
+5300
+5000
+
+21.354
+
+106770
+
+3. COUT DE REVIENT :
+P
+PU
+12
+8.3416
+
+D
+Q
+COUT DE PROD
+DES PF Vendu
+
+20000
+
+T
+MT
+64800
+121787.36
+
+Q
+4000
+
+PU
+21.354
+
+MT
+85416
+
+F. VENTE
+
+7758.333*
+
+1551.66*
+
+COUT DE REVIENT
+
+194345.693
+
+86967.66
+
+La répartition de frais de vente :
+
+4. RESULTAT DE COMPTABILITE ANALYTIQUE :
+P
+
+D
+CA
+
+Q
+20000
+
+PU
+12.5
+
+MT
+250000
+
+Q
+4000
+
+T
+PU
+21
+
+MT
+84000
+
+C.DE REVIENT
+
+194345.693
+
+86967.66
+
+RAE
+
+55654.307
+
+-2967.66
+
+RAG= 55654.307 + (-2967.66) = 52686.647 DA.
+
+III/ Le résultat de la CG :
+RESULTAT DE COMPTABILITE GENERALE = RA + ES - CNI
+= 52686.64 + 300 – 100 = 52886.64 DA.
+
+Université Mouloud MAMMERI Tizi-Ouzou.
+Faculté des sciences économiques, commerciales et sciences de gestions.
+Département sciences commerciales.
+
+Niveau : 2ème Année LMD.
+Module : Comptabilité Analytique.
+
+T.D N°03
+
+Une entreprise industrielle fabrique et vend sur stock deux produits P1 et P2 à partir d’une matière première
+unique A. La fabrication s’effectue au niveau d’un atelier unique.
+
+- Le produit P1 utilise 0.2 kgs de matière A et il est cédé au prix unitaire de 5.5 DA.
+- Le produit P2 utilise 0.6 kgs de matière A et il est vendu au prix unitaire de 12 DA.
+Pour le mois de février 2016, la répartition des charges directes entre les deux produits se présente
+ainsi :
+Désignations
+Consommation de MP(A)
+Main d’œuvre directe
+Frais directs de vente
+
+produit P1
+
+produit P2
+
+Total
+
+?
+15 000
+12 000
+
+?
+25 000
+10 000
+
+?
+40 000
+22 000
+
+➢ Le montant des frais indirects s’élève à 85 000 DA répartis comme suit :
+- Frais d’achat : 30 000 DA ;
+- Frais de production : 20 000 DA ;
+- Frais de vente : 35 000 DA.
+➢ Les frais indirects s’imputent aux couts des deux produits proportionnellement :
+- à la main d’œuvre directe pour les frais de fabrication ;
+- aux unités de produits vendues pour les frais de vente.
+➢ Les stocks au début du moins sont de :
+- Matière premier A ……….. 12 000 kgs à 14 DA ;
+- Produit P1 ………………… 60 000 unités à 2.90 DA l’unité ;
+- Produit P2 ………………… 5 000 unités à 12 DA l’unité.
+➢ Les entrées de la période sont de :
+- Achat de matière première A : 18 000 kgs à 16 DA le kg ;
+- Production de P1 : 45 000 unités ;
+- Production de P2 : 10 000 unités.
+➢ Les sorties de la période :
+- Consommation de la matière premier A : 15 000 kgs ;
+- Ventes de P1 : 50 000 unités ;
+- Ventes de P2 : 8 000 unités.
+N.B : On utilise le CMUP pour les sorties des stocks de la matière A, et des produits P1 et P2.
+T.A.F : 1 – Déterminer les différents couts par produit ;
+
+2 – Calculer le résultat analytique par produit et général.
+
+La correction
+1 - le cout d’achat MP (A) :
+Q
+18 000
+
+Prix d’achat
++
+Frais d’achat indirects
+
+PU
+16
+
+MT
+288 000
+30 000
+
+Cout d’achat
+
+18 000
+
+17.67
+
+318 000
+
+SI
+
+12 000
+
+14
+
+168 000
+
+CMUP
+
+30 000
+
+16.2
+
+486 000
+
+2 – le cout de fabrication des produits P1 et P2 :
+45 000 unités produites P1 * 0.2 kg = 9 000 kgs.
+10 000 unités produites P2 * 0.6 kg = 6 000 kgs.
+P1
+
+P2
+
+Q
+
+PU
+
+MT
+
+Q
+
+PU
+
+MT
+
+9 000
+
+16.2
+
+145 800
+
+6 000
+
+16.2
+
+97 200
+
+25 000
+
+0.5
+
+25 000
+12 500
+
+M.P consommées
++
+- MOD directes
+- Frais indirects
+
+15 000
+
+0.5
+
+15 000
+7 500
+
+Cout de production
+
+45 000
+
+3.74
+
+168 300
+
+10 000
+
+13.47
+
+134 700
+
+SI
+
+60 000
+
+2.90
+
+174 000
+
+5 000
+
+12
+
+60 000
+
+CMUP
+
+105 000
+
+3.26
+
+342 300
+
+15 000
+
+12.98
+
+194 700
+
+Clé de répartition : 20 000 / (15 000 + 25 000) = 20 000/40 000 = 0.5
+3 – Cout de revient des produits P1 et P2 :
+P1
+Q
+
+PU
+
+P2
+MT
+
+Q
+
+PU
+
+MT
+
+P1
+
+P2
+
+Q
+
+PU
+
+MT
+
+Q
+
+PU
+
+MT
+
+CA
+Cout de revient
+
+50 000
+
+5.5
+
+275 000
+
+8 000
+
+12
+
+96 000
+
+50 000
+
+4.103
+
+205 150
+
+8 000
+
+14.833
+
+118 664
+
+Résultat Analytique
+
+50 000
+
+1.397
+
+69 850
+
+8 000
+
+- 2.833
+
+- 22 664
+
+Cout de production PF
+vendus
++
+F. de vente directs
++
+F. de vente indirects
+C. de revient
+
+50 000
+
+3.26
+
+163 000
+
+8 000
+
+12.98
+
+12 000
+
+103 840
+10 000
+
+50 000
+
+0.603
+
+30 150
+
+8 000
+
+0.603
+
+4 824
+
+50 000
+
+4.103
+
+205 150
+
+8 000
+
+14.833
+
+118 664
+
+Clé de répartition : 35 000 / (50 000 + 8 000) = 35 000 / 58 000 = 0.603
+
+4 – Le résultat analytique :
+RAE général = RAE du P1 + RAE du P2
+= 69 850 + (-22 664)
+RAE (G) = 47 186 DA.
+
+Université Mouloud MAMMERI Tizi-Ouzou.
+Faculté des sciences économiques, commerciales et sciences de gestions.
+Département sciences commerciales.
+
+Niveau : 2ème Année LMD.
+Module : Comptabilité Analytique.
+
+T.D N°04
+Une entreprise fabrique en série des articles A par assemblage de deux pièces, une pièce No1 et une
+pièce No2. Ces pièces sont usinées dans l’entreprise à partir d’une seule matière première achetée.
+L’activité du mois d’Avril se résume dans les données suivantes :
+➢ Stock au 01/04 :
+- Matière première : 20 000 kgs ………. à 4.4 DA le kg ;
+- Pièces No1: 860 unités …….. pour un montant de 287 359 DA ;
+- Pièces No2: 750 unités …….. pour un montant de 309 979 DA ;
+- Articles A : 600 unités ……… pour un montant de 675 650 DA.
+➢ Achat du mois : Matière première : 90 000 kgs ………. à 4.4 DA le kg ;
+➢ Centre usinage :
+- Pièces No1: 24 100 kgs de matière première utilisées, 3 474 heures de travail de
+
+main
+
+d’œuvre directe à 104.25 DA l’heure ;
+- Pièces No2: 63 000 kgs de matière première utilisées, 4 526 heures de travail de main
+d’œuvre directe à 108.25 DA l’heure ;
+- Production du mois : 1 720 pièces No1 finies, et 2 250 pièces finies de No2.
+➢ Centre assemblage :
+- Production : 1 950 articles A
+- Main d’œuvre directe : 5 500 heures de travail à 102.50 DA l’heure.
+➢ Vente du mois : 2 100 articles A à 1 175 DA l’unité.
+❖ Tableau de répartition des charges indirectes :
+
+Centres auxiliaires
+Moyens
+Gestion
+énergie
+généraux
+personnel
+Total RP
+548 050 DA
+
+30 000
+
+M généraux
+Energie
+G personnel
+
+20%
+
+Centres principaux
+Atelier
+Atelier
+usinage
+assemblage
+
+Approvisionnement
+
+distribution
+
+26 400
+
+45 400
+
+11 000
+
+246 600
+
+115 850
+
+72 800
+
+10%
+
+10%
+10%
+
+10%
+10%
+
+30%
+30%
+30%
+
+30%
+30%
+30%
+
+10%
+10%
+30%
+
+Kg MP
+achetée
+
+Heure Main
+d’œuvre D
+
+Heure Main
+d’œuvre D
+
+100 DA
+vente (CA)
+
+Total RS
+Nature de
+l’unité
+d’œuvre
+
+Travail à faire : déterminer le résultat analytique.
+
+Corrigé TD no 04
+Répartition réciproque :
+Moyens généraux (1) : X = 30 000 + 0.20Y
+Energie (2) : Y = 26 400 + 0.10X
+On remplace X dans (2) :
+Y= 26 400 + 0.10 (30 000 + 0.20Y)
+Y= 26 400 + 3 000 + 0.02Y
+Y- 0.02 = 29 400
+Y= 29 400/0.98 = 30 000 DA
+On remplace Y dans (1) :
+X= 30 000 + 0.20 * 30 000 = 36 000 DA
+Centres auxiliaires
+
+Total RP
+548 050 DA
+M généraux
+Energie
+G personnel
+Total RS
+548 050 DA
+Nature de
+l’unité
+d’œuvre
+Nombre de
+l’unité
+d’œuvre
+Cout de
+l’unité
+d’œuvre
+
+Moyens
+généraux
+
+Centres principaux
+Atelier
+Atelier
+usinage
+assemblage
+
+énergie
+
+Gestion
+personnel
+
+Approvisionnement
+
+30 000
+
+26 400
+
+45 400
+
+11 000
+
+246 600
+
+115 850
+
+72 800
+
+(- 36 000)
+6 000
+
+3 600
+(- 30 000)
+
+3 600
+3 000
+(- 52 000)
+
+3 600
+5 200
+
+10 800
+9 000
+15 600
+
+10 800
+9 000
+15 600
+
+3 600
+3 000
+15 600
+
+0
+
+19 800
+
+282 000
+
+151 250
+
+95 000
+
+Kg MP
+achetée
+
+Heure
+MOD
+
+Heure MOD
+
+100 DA
+vente (CA)
+
+90 000
+
+8 000
+
+5 500
+
+24 675
+
+0.22 (1)
+
+35.25 (2)
+
+27.50 (3)
+
+3.85 (4)
+
+0
+
+0
+
+distribution
+
+(1) - 19 800 / 9 000 kg achat MP = 0.22
+(2) - 282 000 / (3 474 + 4 526) heures de main d’œuvre directe des Pièces No1 et No2 = 35.25
+
+(3) - 151 250 / (5 500) heures de main d’œuvre directe des articles A = 27.50
+(4) - 95 000 / (2 467 500 CA / 100 DA) = 3.85
+1- Cout d’achat de MP :
+Eléments
+Prix d’achat (charge directe)
+
+Q
+
+PU
+
+MT
+
+90 000
+
+4.40
+
+396 000
+
+Charge indirecte :
+- Centre approv
+
+90 000
+
+0.22
+
+19 800
+
+Cout d’achat
+
+90 000
+
+4.62
+
+415 800
+
+SI
+
+20 000
+
+4.40
+
+88 000
+
+CMUP
+
+110 000
+
+4.58
+
+503 800
+
+2- Cout de production des Pièces No1 et des Pièces No2 :
+
+Q
+
+Pièces No1
+PU
+
+Q
+
+Pièces No2
+PU
+
+MT
+
+MT
+
+24 100
+
+4.58
+
+110 378
+
+63 000
+
+4.58
+
+288 540
+
+3 474
+
+104.25
+
+362 164.5
+
+4 526
+
+108.25
+
+489 939.5
+
+Ch. Indirectes : centre
+usinage
+
+3 474
+
+35.25
+
+122 458.5
+
+4 526
+
+35.25
+
+159 541.5
+
+Cout de production
+
+1 720
+
+345.93
+
+595001
+
+2 250
+
+416.89
+
+938 021
+
+SI
+
+860
+
+287 359
+
+750
+
+CMUP
+
+2 580
+
+882 360
+
+3 000
+
+Eléments
+MP consommées
+Ch. Directes : MOD
+
+342
+
+3- Cout de production des articles A :
+Eléments
+Pièces No1
+
+Q
+1 950
+
+PU
+342
+
+MT
+666 900
+
+Pièces No2
+
+1 950
+
+416
+
+811 200
+
+Ch. Directes : MOD
+
+5 500
+
+102.5
+
+563 750
+
+Ch. Indirectes : centre
+assemblage
+Cout de production
+
+5 500
+
+27.5
+
+151 250
+
+1 950
+
+1 124.66
+
+2 193 100
+
+SI
+
+600
+
+CMUP
+
+2 550
+
+4- Cout de revient des articles A :
+
+675 650
+1 125
+
+2 868 750
+
+309 979
+416
+
+1 248 000
+
+Eléments
+Cout de production
+des articles A vendus
+Ch. Indirectes : centre
+distribution
+Cout de revient
+
+Q
+
+PU
+
+MT
+
+2 100
+
+1 125
+
+2 362 500
+
+24 675
+
+3.85
+
+95 000 (arrondi)
+
+2 100
+
+2 457 500
+
+5- Résultat
+analytique :
+Eléments
+
+Q
+
+PU
+
+MT
+
+Vente (CA)
+Cout de revient
+
+2 100
+
+1 175
+
+2 467 500
+
+2 100
+
+(-2 457 500)
+
+Résulta AE
+
+2 100
+
+10 000
+
+

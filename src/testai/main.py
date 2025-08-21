@@ -2,8 +2,10 @@
 import sys
 import warnings
 import os
+import json
 
 from datetime import datetime
+from pathlib import Path
 
 from testai.crew import Testai
 
@@ -18,12 +20,30 @@ def run():
     """
     Run the interview crew.
     """
-    # role_title is provided manually by the user (first CLI arg) to avoid RAG influencing the offer type.
-    role_title = sys.argv[1] if len(sys.argv) > 1 else os.environ.get('ROLE_TITLE', 'Offer-Not-Provided')
+    # Load admin offer config if present
+    admin_store = Path('runtime') / 'admin_config.json'
+    offer = {}
+    try:
+        with admin_store.open('r', encoding='utf-8') as f:
+            data = json.load(f)
+            offer = data.get('offer') or {}
+    except Exception:
+        offer = {}
+
+    # role_title priority: CLI arg > ADMIN_STORE > env > fallback
+    role_title = (
+        sys.argv[1] if len(sys.argv) > 1 else
+        offer.get('role_title') or os.environ.get('ROLE_TITLE', 'Offer-Not-Provided')
+    )
+
     inputs = {
         'role_title': role_title,
         'current_year': str(datetime.now().year),
-        # Optional candidate profile passed manually or via env for testing
+        'offer_experience_level': offer.get('experience_level'),
+        'offer_tech_skills': [s.strip() for s in (offer.get('tech_skills') or '').split(',') if s.strip()],
+        'offer_education': offer.get('education'),
+        'offer_soft_skills': [s.strip() for s in (offer.get('soft_skills') or '').split(',') if s.strip()],
+        # Optional candidate profile (can be empty; admin profile removed from UI)
         'candidate_profile': {
             'name': os.environ.get('CANDIDATE_NAME', 'Candidat(e)'),
             'years_experience': int(os.environ.get('CANDIDATE_YEARS', '0') or 0),

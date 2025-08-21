@@ -2,12 +2,16 @@
   "templates": [
     {
       "name": ""
+    },
+    {
+      "name": "Comptable"
     }
   ],
   "offer": {
     "role_title": "Comptable",
-    "experience_level": "2 ans",
+    "experience_level": "3 ans",
     "tech_skills": "Francais , communication , Excel",
-    "scoring": "sssssss"
+    "education": "Master Comptabilté et finance interntional",
+    "soft_skills": "Leadership, communication"
   }
 }
