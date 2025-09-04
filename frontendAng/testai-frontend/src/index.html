@@ -1,13 +1,81 @@
 <!doctype html>
-<html lang="en">
+<html lang="fr">
 <head>
   <meta charset="utf-8">
-  <title>TestaiFrontend</title>
+  <title>RecruTime - Plateforme d'Entretiens Intelligents</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Plateforme d'entretiens intelligents avec IA pour l'évaluation des candidats">
+  <meta name="keywords" content="entretien, IA, recrutement, évaluation, candidat">
+  <meta name="author" content="RecruTime">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  
+  <!-- Font Awesome pour les icônes -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Google Fonts - Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- Meta tags pour les réseaux sociaux -->
+  <meta property="og:title" content="RecruTime - Plateforme d'Entretiens Intelligents">
+  <meta property="og:description" content="Plateforme d'entretiens intelligents avec IA pour l'évaluation des candidats">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="">
+  <meta property="og:image" content="">
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="RecruTime - Plateforme d'Entretiens Intelligents">
+  <meta name="twitter:description" content="Plateforme d'entretiens intelligents avec IA pour l'évaluation des candidats">
+  
+  <!-- Theme color pour mobile -->
+  <meta name="theme-color" content="#2563eb">
+  <meta name="msapplication-TileColor" content="#2563eb">
+  
+  <!-- Apple touch icon -->
+  <link rel="apple-touch-icon" href="favicon.ico">
+  
+  <!-- Manifest pour PWA -->
+  <link rel="manifest" href="manifest.json">
 </head>
 <body>
-  <app-root></app-root>
+  <app-root>
+    <!-- Loading screen -->
+    <div style="
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      font-family: 'Inter', sans-serif;
+    ">
+      <div style="text-align: center;">
+        <div style="
+          width: 60px;
+          height: 60px;
+          border: 4px solid rgba(255,255,255,0.3);
+          border-top: 4px solid white;
+          border-radius: 50%;
+          animation: spin 1s linear infinite;
+          margin: 0 auto 20px;
+        "></div>
+        <h2 style="margin: 0; font-weight: 600;">RecruTime</h2>
+        <p style="margin: 10px 0 0 0; opacity: 0.8;">Chargement de l'application...</p>
+      </div>
+    </div>
+    
+    <style>
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+    </style>
+  </app-root>
 </body>
 </html>

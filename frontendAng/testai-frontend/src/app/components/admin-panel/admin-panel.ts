@@ -1,30 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { AuthService, User } from '../../services/auth.service';
+import { AdminService, JobConfig as JobCfg } from '../../services/admin.service';
+import { DocumentService } from '../../services/document.service';
 
-interface JobConfig {
+
+export interface JobConfig {
   title: string;
   department: string;
-  requirements: string;
   experience: string;
   salary: string;
   location: string;
+  requirements: string;
+  company_name: string;
 }
 
-interface Interview {
-  id: number;
-  candidate: string;
-  position: string;
-  date: string;
-  status: 'En cours' | 'Terminé' | 'Annulé' | 'En attente';
-  score?: number;
-  notes?: string;
-}
 
-interface Document {
-  id: number;
+export interface Document {
+  id: string;
   name: string;
-  type: string;
+  type: 'PDF' | 'Word' | 'Excel' | 'Image' | 'Autre';
   size: string;
   uploadDate: string;
   status: 'Validé' | 'En attente' | 'Rejeté';
@@ -35,292 +31,456 @@ interface Document {
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './admin-panel.html',
-  styleUrl: './admin-panel.scss'
+  styleUrls: ['./admin-panel.scss']
 })
 export class AdminPanelComponent implements OnInit {
-  activeTab: 'config' | 'interviews' | 'reports' = 'config';
+  async downloadInterviewReportPdf(): Promise<void> {
+    try {
+      // Get the markdown content and clean it
+      const md = await this.adminService.getReportMarkdown();
+      const cleanedContent = this.cleanMarkdownContent(md.content);
+      const reportDate = new Date(md.modified * 1000).toLocaleDateString('fr-FR');
+      const fileName = `rapport_entretien_${new Date(md.modified * 1000).toISOString().split('T')[0]}.html`;
+      
+      // Convert markdown to properly formatted HTML
+      const htmlContent = this.convertMarkdownToHtml(cleanedContent);
+      
+      // Create a complete, clean HTML document
+      const htmlDocument = `<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rapport d'entretien - ${reportDate}</title>
+  <style>
+    @page { 
+      size: A4; 
+      margin: 20mm;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body { 
+      font-family: 'Segoe UI', Arial, sans-serif;
+      line-height: 1.5;
+      color: #333;
+      font-size: 11pt;
+      background: white;
+    }
+    .document-header {
+      text-align: center;
+      border-bottom: 3px solid #0066cc;
+      padding-bottom: 20px;
+      margin-bottom: 30px;
+    }
+
+    .company-name { 
+      color: #333;
+      font-size: 16pt;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .report-title { 
+      color: #666;
+      font-size: 18pt;
+      margin: 8px 0;
+    }
+    .job-info {
+      color: #555;
+      font-size: 12pt;
+      margin: 5px 0;
+    }
+    .date-info { 
+      color: #888;
+      font-size: 11pt;
+      margin-top: 10px;
+    }
+    h1 { 
+      color: #0066cc;
+      font-size: 16pt;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 8px;
+      margin: 25px 0 15px 0;
+    }
+    h2 { 
+      color: #333;
+      font-size: 14pt;
+      margin: 20px 0 10px 0;
+    }
+    h3 { 
+      color: #555;
+      font-size: 12pt;
+      margin: 15px 0 8px 0;
+    }
+    p {
+      margin: 8px 0;
+      text-align: justify;
+    }
+    ul, ol { 
+      margin: 10px 0;
+      padding-left: 25px;
+    }
+    li { 
+      margin: 4px 0;
+    }
+    strong {
+      font-weight: bold;
+      color: #222;
+    }
+    .recommendation {
+      background: #f5f5f5;
+      border-left: 4px solid #0066cc;
+      padding: 15px;
+      margin: 20px 0;
+    }
+    .score-info {
+      background: #f8f9fa;
+      padding: 15px;
+      border-radius: 5px;
+      margin: 15px 0;
+    }
+    @media print {
+      body { 
+        font-size: 10pt;
+      }
+      h1 { font-size: 14pt; }
+      h2 { font-size: 12pt; }
+      h3 { font-size: 11pt; }
+    }
+  </style>
+</head>
+<body>
+  <div class="document-header">
+    <div class="company-name">${this.jobConfig.company_name || 'RecruTime'}</div>
+    <div class="report-title">Rapport d'Entretien</div>
+    ${this.jobConfig.title ? `<div class="job-info">Poste : ${this.jobConfig.title}</div>` : ''}
+    ${this.jobConfig.department ? `<div class="job-info">Département : ${this.jobConfig.department}</div>` : ''}
+    <div class="date-info">Généré le ${reportDate}</div>
+  </div>
   
-  // Configuration des postes
+  <div class="content">
+    ${htmlContent}
+  </div>
+</body>
+</html>`;
+      
+      // Create blob and trigger download
+      const blob = new Blob([htmlDocument], { type: 'text/html' });
+      const url = URL.createObjectURL(blob);
+      
+      // Create download link
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = fileName;
+      link.style.display = 'none';
+      
+      // Add to DOM, click, and remove
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      
+      // Clean up
+      setTimeout(() => URL.revokeObjectURL(url), 100);
+      
+      this.showNotification(
+        'Fichier HTML téléchargé ! Ouvrez-le et utilisez Ctrl+P puis "Enregistrer au format PDF" pour créer votre PDF.',
+        'success'
+      );
+      
+    } catch (e: any) {
+      console.error('Erreur PDF:', e);
+      this.showNotification(e?.message || 'Impossible de télécharger le rapport', 'error');
+    }
+  }
+
+  // Données d'authentification
+  currentUser: User | null = null;
+
+  // Configuration du poste
   jobConfig: JobConfig = {
-    title: 'Comptable',
-    department: 'Comptabilité',
-    requirements: 'Bac+3 en comptabilité, 3 ans d\'expérience',
-    experience: '3-5 ans',
-    salary: '35 000€ - 45 000€',
-    location: 'Paris'
+    title: '',
+    department: '',
+    experience: '',
+    salary: '',
+    location: '',
+    requirements: '',
+    company_name: ''
   };
 
-  // Liste des entretiens
-  interviews: Interview[] = [
-    {
-      id: 1,
-      candidate: 'Jean Dupont',
-      position: 'Comptable',
-      date: '2025-01-15',
-      status: 'En cours',
-      score: 85
-    },
-    {
-      id: 2,
-      candidate: 'Marie Martin',
-      position: 'Comptable',
-      date: '2025-01-14',
-      status: 'Terminé',
-      score: 92,
-      notes: 'Excellente candidate, recommandée'
-    },
-    {
-      id: 3,
-      candidate: 'Pierre Durand',
-      position: 'Comptable',
-      date: '2025-01-13',
-      status: 'Terminé',
-      score: 78,
-      notes: 'Compétences techniques correctes, soft skills à améliorer'
-    }
-  ];
 
-  // Documents de référence
-  documents: Document[] = [
-    {
-      id: 1,
-      name: 'Fiche de poste Comptable.pdf',
-      type: 'PDF',
-      size: '2.3 MB',
-      uploadDate: '2025-01-10',
-      status: 'Validé'
-    },
-    {
-      id: 2,
-      name: 'Grille d\'évaluation.xlsx',
-      type: 'Excel',
-      size: '1.1 MB',
-      uploadDate: '2025-01-09',
-      status: 'Validé'
-    },
-    {
-      id: 3,
-      name: 'Manuel procédures comptables.docx',
-      type: 'Word',
-      size: '4.7 MB',
-      uploadDate: '2025-01-08',
-      status: 'En attente'
-    }
-  ];
+  // Documents
+  documents: Document[] = [];
 
-  // Statistiques
-  stats = {
-    totalInterviews: 0,
-    completedInterviews: 0,
-    averageScore: 0,
-    activePositions: 0
-  };
 
   // Nouveau document
   newDocument = {
-    name: '',
-    type: '',
-    file: null as File | null
+    file: null as File | null,
+    name: ''
   };
 
-  // Filtres
-  statusFilter = 'all';
-  positionFilter = 'all';
 
-  ngOnInit() {
-    this.calculateStats();
+  // Onglet actif
+  activeTab = 'config';
+
+  constructor(private authService: AuthService, private adminService: AdminService, private documentService: DocumentService) {}
+
+  ngOnInit(): void {
+    this.currentUser = this.authService.getCurrentUser();
+    // Charger la config depuis le backend
+    this.loadJobConfig();
+    // Charger la liste des documents du dossier knowledge/
+    this.refreshKnowledgeList();
   }
 
-  setActiveTab(tab: 'config' | 'interviews' | 'reports') {
-    this.activeTab = tab;
+  // Méthodes d'authentification et permissions
+  canModifyData(): boolean {
+    return this.authService.canModifyData();
   }
 
-  // Gestion de la configuration des postes
-  saveJobConfig() {
-    console.log('Configuration sauvegardée:', this.jobConfig);
-    // Ici on pourrait appeler un service pour sauvegarder
-    this.showNotification('Configuration sauvegardée avec succès', 'success');
+  canDeleteData(): boolean {
+    return this.authService.canDeleteData();
   }
 
-  resetJobConfig() {
+  canExportData(): boolean {
+    return this.authService.canExportData();
+  }
+
+  canManageUsers(): boolean {
+    return this.authService.canManageUsers();
+  }
+
+
+  // Gestion de la configuration du poste
+  async saveJobConfig(): Promise<void> {
+    if (!this.canModifyData()) {
+      this.showNotification('Vous n\'avez pas les permissions pour modifier la configuration.', 'warning');
+      return;
+    }
+
+    try {
+      await this.adminService.saveJobConfig(this.jobConfig as unknown as JobCfg);
+      this.showNotification('Configuration sauvegardée avec succès !', 'success');
+    } catch (e: any) {
+      this.showNotification(e?.message || 'Erreur lors de la sauvegarde', 'error');
+    }
+  }
+
+  private async loadJobConfig(): Promise<void> {
+    try {
+      const cfg = await this.adminService.getJobConfig();
+      this.jobConfig = cfg as any;
+    } catch (e: any) {
+      this.showNotification(e?.message || 'Erreur lors du chargement de la configuration', 'error');
+    }
+  }
+
+  resetJobConfig(): void {
+    if (!this.canModifyData()) {
+      this.showNotification('Vous n\'avez pas les permissions pour modifier la configuration.', 'warning');
+      return;
+    }
+
     this.jobConfig = {
-      title: 'Comptable',
-      department: 'Comptabilité',
-      requirements: 'Bac+3 en comptabilité, 3 ans d\'expérience',
-      experience: '3-5 ans',
-      salary: '35 000€ - 45 000€',
-      location: 'Paris'
+      title: '',
+      department: '',
+      experience: '',
+      salary: '',
+      location: '',
+      requirements: '',
+      company_name: ''
     };
-    this.showNotification('Configuration réinitialisée', 'info');
+
+    this.showNotification('Configuration réinitialisée.', 'info');
   }
 
-  // Gestion des entretiens
-  updateInterviewStatus(interviewId: number, newStatus: Interview['status']) {
-    const interview = this.interviews.find(i => i.id === interviewId);
-    if (interview) {
-      interview.status = newStatus;
-      this.calculateStats();
-      this.showNotification(`Statut de l'entretien mis à jour`, 'success');
-    }
+  canSaveJobConfig(): boolean {
+    return this.canModifyData() &&
+           this.jobConfig.title.trim() !== '' &&
+           this.jobConfig.department.trim() !== '';
   }
 
-  addInterviewNotes(interviewId: number, notes: string) {
-    const interview = this.interviews.find(i => i.id === interviewId);
-    if (interview) {
-      interview.notes = notes;
-      this.showNotification('Notes ajoutées avec succès', 'success');
-    }
-  }
-
-  deleteInterview(interviewId: number) {
-    if (confirm('Êtes-vous sûr de vouloir supprimer cet entretien ?')) {
-      this.interviews = this.interviews.filter(i => i.id !== interviewId);
-      this.calculateStats();
-      this.showNotification('Entretien supprimé', 'success');
-    }
-  }
 
   // Gestion des documents
-  onFileSelected(event: any) {
+  onFileSelected(event: any): void {
     const file = event.target.files[0];
     if (file) {
       this.newDocument.file = file;
       this.newDocument.name = file.name;
-      this.newDocument.type = this.getFileType(file.name);
     }
   }
 
-  getFileType(fileName: string): string {
-    const extension = fileName.split('.').pop()?.toLowerCase();
-    switch (extension) {
-      case 'pdf': return 'PDF';
-      case 'docx': return 'Word';
-      case 'xlsx': return 'Excel';
-      case 'jpg':
-      case 'jpeg':
-      case 'png': return 'Image';
+  getFileType(file: File): 'PDF' | 'Word' | 'Excel' | 'Image' | 'Autre' {
+    const extension = file.name.split('.').pop()?.toLowerCase();
+    if (['pdf'].includes(extension || '')) return 'PDF';
+    if (['doc', 'docx'].includes(extension || '')) return 'Word';
+    if (['xls', 'xlsx'].includes(extension || '')) return 'Excel';
+    if (['png', 'jpg', 'jpeg', 'gif'].includes(extension || '')) return 'Image';
+    return 'Autre';
+  }
+
+  async refreshKnowledgeList(): Promise<void> {
+    try {
+      const res = await this.documentService.list();
+      // Mapper vers le modèle de Document utilisé par l'UI
+      this.documents = res.files.map(f => ({
+        id: f.name,
+        name: f.name,
+        type: this.mapExtToType(f.ext),
+        size: this.formatFileSize(f.size),
+        uploadDate: new Date(f.modified * 1000).toISOString().split('T')[0],
+        status: 'Validé'
+      }));
+    } catch (e: any) {
+      this.showNotification(e?.message || 'Erreur lors du chargement des documents', 'error');
+    }
+  }
+
+  private mapExtToType(ext: string): Document['type']{
+    switch((ext || '').toLowerCase()){
+      case '.pdf': return 'PDF';
+      case '.doc':
+      case '.docx': return 'Word';
+      case '.xls':
+      case '.xlsx': return 'Excel';
+      case '.png':
+      case '.jpg':
+      case '.jpeg':
+      case '.gif': return 'Image';
       default: return 'Autre';
     }
   }
 
-  uploadDocument() {
-    if (this.newDocument.file) {
-      const document: Document = {
-        id: this.documents.length + 1,
+  async uploadDocument(): Promise<void> {
+    if (!this.canModifyData()) {
+      this.showNotification('Vous n\'avez pas les permissions pour uploader des documents.', 'warning');
+      return;
+    }
+
+    if (!this.newDocument.file || !this.newDocument.name.trim()) {
+      this.showNotification('Veuillez sélectionner un fichier et saisir un nom.', 'warning');
+      return;
+    }
+
+    try {
+      // Upload vers backend -> knowledge/
+      await this.documentService.upload(this.newDocument.file);
+      await this.documentService.reindex();
+
+      const newDoc: Document = {
+        id: Date.now().toString(),
         name: this.newDocument.name,
-        type: this.newDocument.type,
+        type: this.getFileType(this.newDocument.file),
         size: this.formatFileSize(this.newDocument.file.size),
         uploadDate: new Date().toISOString().split('T')[0],
-        status: 'En attente'
+        status: 'Validé'
       };
-      
-      this.documents.unshift(document);
+
+      this.documents.push(newDoc);
       this.resetNewDocument();
-      this.showNotification('Document uploadé avec succès', 'success');
+      this.showNotification('Document uploadé et indexé avec succès !', 'success');
+      await this.refreshKnowledgeList();
+      // Rafraîchir toute la page pour s'assurer que l'index RAG est repris par l'UI
+      window.location.reload();
+    } catch (e: any) {
+      this.showNotification(e?.message || 'Erreur pendant l\'upload/indexation', 'error');
     }
   }
 
-  resetNewDocument() {
+  resetNewDocument(): void {
     this.newDocument = {
-      name: '',
-      type: '',
-      file: null
+      file: null,
+      name: ''
     };
   }
 
-  deleteDocument(documentId: number) {
+  async deleteDocument(documentId: string): Promise<void> {
+    if (!this.canDeleteData()) {
+      this.showNotification('Vous n\'avez pas les permissions pour supprimer des documents.', 'warning');
+      return;
+    }
+
     if (confirm('Êtes-vous sûr de vouloir supprimer ce document ?')) {
-      this.documents = this.documents.filter(d => d.id !== documentId);
-      this.showNotification('Document supprimé', 'success');
+      try {
+        await this.documentService.delete(documentId);
+        await this.refreshKnowledgeList();
+        this.showNotification('Document supprimé avec succès.', 'success');
+        // Rafraîchir la page pour appliquer le changement de façon visible
+        window.location.reload();
+      } catch (e: any) {
+        this.showNotification(e?.message || 'Erreur lors de la suppression du document', 'error');
+      }
     }
   }
 
-  updateDocumentStatus(documentId: number, newStatus: Document['status']) {
+  updateDocumentStatus(documentId: string, newStatus: Document['status']): void {
+    if (!this.canModifyData()) {
+      this.showNotification('Vous n\'avez pas les permissions pour modifier les documents.', 'warning');
+      return;
+    }
+
     const document = this.documents.find(d => d.id === documentId);
     if (document) {
       document.status = newStatus;
-      this.showNotification('Statut du document mis à jour', 'success');
+      this.showNotification(`Statut du document mis à jour : ${newStatus}`, 'success');
     }
   }
 
-  // Statistiques et rapports
-  calculateStats() {
-    this.stats.totalInterviews = this.interviews.length;
-    this.stats.completedInterviews = this.interviews.filter(i => i.status === 'Terminé').length;
-    
-    const completedWithScore = this.interviews.filter(i => i.status === 'Terminé' && i.score);
-    if (completedWithScore.length > 0) {
-      this.stats.averageScore = Math.round(
-        completedWithScore.reduce((sum, i) => sum + (i.score || 0), 0) / completedWithScore.length
-      );
-    }
-    
-    this.stats.activePositions = this.interviews.filter(i => i.status === 'En cours').length;
+  canUploadDocument(): boolean {
+    return this.canModifyData() &&
+           this.newDocument.file !== null &&
+           this.newDocument.name.trim() !== '';
   }
 
-  getFilteredInterviews(): Interview[] {
-    let filtered = this.interviews;
-    
-    if (this.statusFilter !== 'all') {
-      filtered = filtered.filter(i => i.status === this.statusFilter);
-    }
-    
-    if (this.positionFilter !== 'all') {
-      filtered = filtered.filter(i => i.position === this.positionFilter);
-    }
-    
-    return filtered;
-  }
 
   getFilteredDocuments(): Document[] {
     return this.documents;
   }
 
-  // Export des données
-  exportData() {
-    const data = {
-      interviews: this.interviews,
-      documents: this.documents,
-      jobConfig: this.jobConfig,
-      stats: this.stats,
-      exportDate: new Date().toISOString()
-    };
+
+
+  private cleanMarkdownContent(content: string): string {
+    let cleanedContent = content;
     
-    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `admin_data_${new Date().toISOString().split('T')[0]}.json`;
-    a.click();
-    window.URL.revokeObjectURL(url);
+    // Remove JSON block that starts with ```json and ends with ```
+    const jsonBlockRegex = /^```json\s*\n[\s\S]*?\n```\s*\n*/;
+    cleanedContent = cleanedContent.replace(jsonBlockRegex, '');
     
-    this.showNotification('Données exportées avec succès', 'success');
+    // Also remove any standalone JSON objects at the beginning
+    const standaloneJsonRegex = /^\{[\s\S]*?\}\s*\n*/;
+    cleanedContent = cleanedContent.replace(standaloneJsonRegex, '');
+    
+    return cleanedContent;
   }
 
-  exportInterviewsCSV() {
-    const headers = ['ID', 'Candidat', 'Poste', 'Date', 'Statut', 'Score', 'Notes'];
-    const csvContent = [
-      headers.join(','),
-      ...this.interviews.map(i => [
-        i.id,
-        i.candidate,
-        i.position,
-        i.date,
-        i.status,
-        i.score || '',
-        (i.notes || '').replace(/,/g, ';')
-      ].join(','))
-    ].join('\n');
+  private convertMarkdownToHtml(markdown: string): string {
+    // Clean the markdown content first
+    const cleanedMarkdown = this.cleanMarkdownContent(markdown);
     
-    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `interviews_${new Date().toISOString().split('T')[0]}.csv`;
-    a.click();
-    window.URL.revokeObjectURL(url);
+    let html = cleanedMarkdown
+      // Headers
+      .replace(/^### (.*$)/gim, '<h3>$1</h3>')
+      .replace(/^## (.*$)/gim, '<h2>$1</h2>')
+      .replace(/^# (.*$)/gim, '<h1>$1</h1>')
+      // Bold
+      .replace(/\*\*(.*?)\*\*/gim, '<strong>$1</strong>')
+      // Italic
+      .replace(/\*(.*?)\*/gim, '<em>$1</em>')
+      // Lists
+      .replace(/^\* (.*$)/gim, '<li>$1</li>')
+      .replace(/^- (.*$)/gim, '<li>$1</li>')
+      .replace(/^\d+\. (.*$)/gim, '<li>$1</li>')
+      // Line breaks
+      .replace(/\n/gim, '<br>');
     
-    this.showNotification('Rapport CSV exporté avec succès', 'success');
+    // Wrap list items in ul tags
+    html = html.replace(/(<li>.*?<\/li>)/gis, '<ul>$1</ul>');
+    
+    // Handle recommendations/conclusions with special styling
+    html = html.replace(/(.*(?:recommandation|conclusion|analyse|résultat).*?)<br>/gim, '<div class="recommendation">$1</div>');
+    
+    return html;
   }
 
   // Utilitaires
@@ -332,33 +492,29 @@ export class AdminPanelComponent implements OnInit {
     return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
   }
 
-  getStatusBadgeClass(status: string): string {
-    switch (status) {
-      case 'En cours': return 'bg-warning';
-      case 'Terminé': return 'bg-success';
-      case 'Annulé': return 'bg-danger';
-      case 'En attente': return 'bg-info';
-      case 'Validé': return 'bg-success';
-      case 'Rejeté': return 'bg-danger';
-      default: return 'bg-secondary';
-    }
-  }
 
-  showNotification(message: string, type: 'success' | 'error' | 'info' | 'warning') {
-    // Ici on pourrait implémenter un système de notifications
+  // Notifications
+  showNotification(message: string, type: 'success' | 'warning' | 'info' | 'error' = 'info'): void {
+    // En production, utiliser un service de notification
     console.log(`${type.toUpperCase()}: ${message}`);
-    // Pour l'instant, on utilise alert
-    alert(message);
-  }
 
-  // Validation
-  canSaveJobConfig(): boolean {
-    return this.jobConfig.title.trim() !== '' && 
-           this.jobConfig.department.trim() !== '' && 
-           this.jobConfig.requirements.trim() !== '';
-  }
+    // Affichage temporaire dans l'interface
+    const alertClass = `alert-${type === 'error' ? 'danger' : type}`;
+    const notification = document.createElement('div');
+    notification.className = `alert ${alertClass} alert-dismissible fade show position-fixed`;
+    notification.style.cssText = 'top: 20px; right: 20px; z-index: 9999; min-width: 300px;';
+    notification.innerHTML = `
+      ${message}
+      <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    `;
 
-  canUploadDocument(): boolean {
-    return this.newDocument.file !== null && this.newDocument.name.trim() !== '';
+    document.body.appendChild(notification);
+
+    // Auto-suppression après 5 secondes
+    setTimeout(() => {
+      if (notification.parentNode) {
+        notification.parentNode.removeChild(notification);
+      }
+    }, 5000);
   }
 }

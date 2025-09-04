@@ -1,86 +1,61 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { InterviewService } from '../../services/interview.service';
+import { AdminService, JobConfig as JobCfg } from '../../services/admin.service';
+
+interface InterviewQuestion {
+  question: string;
+  type: string;
+  category: string;
+}
 
 @Component({
   selector: 'app-interview',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, HttpClientModule],
   templateUrl: './interview.html',
   styleUrl: './interview.scss'
 })
 export class InterviewComponent implements OnInit {
   currentPhase: 'intro' | 'technical' | 'soft-skills' | 'conclusion' = 'intro';
-  currentRole: string = 'Comptable';
+  currentRole: string = '';
+  candidateName: string = '';
   currentQuestionIndex: number = 0;
   userConsent: boolean = false;
   currentAnswer: string = '';
   interviewStarted: boolean = false;
 
-  // Questions par phase
-  questions = {
-    technical: [
-      {
-        question: 'Pouvez-vous expliquer la différence entre la comptabilité générale et la comptabilité analytique ?',
-        type: 'text',
-        category: 'Comptabilité'
-      },
-      {
-        question: 'Comment calculez-vous le coût de revient d\'un produit ?',
-        type: 'text',
-        category: 'Coûts'
-      },
-      {
-        question: 'Qu\'est-ce que l\'écart d\'imputation rationnelle ?',
-        type: 'text',
-        category: 'Analyse'
-      },
-      {
-        question: 'Comment gérez-vous la clôture mensuelle des comptes ?',
-        type: 'text',
-        category: 'Procédures'
-      },
-      {
-        question: 'Quels outils informatiques utilisez-vous pour la comptabilité ?',
-        type: 'text',
-        category: 'Outils'
-      }
-    ],
-    softSkills: [
-      {
-        question: 'Décrivez une situation où vous avez dû gérer un conflit avec un collègue.',
-        type: 'text',
-        category: 'Communication'
-      },
-      {
-        question: 'Comment gérez-vous le stress en période de clôture comptable ?',
-        type: 'text',
-        category: 'Gestion du stress'
-      },
-      {
-        question: 'Racontez un moment où vous avez dû apprendre quelque chose de nouveau rapidement.',
-        type: 'text',
-        category: 'Adaptabilité'
-      },
-      {
-        question: 'Comment organisez-vous votre travail pour respecter les délais ?',
-        type: 'text',
-        category: 'Organisation'
-      },
-      {
-        question: 'Donnez un exemple de travail d\'équipe dans votre expérience.',
-        type: 'text',
-        category: 'Travail d\'équipe'
-      }
-    ]
+  // Backend state
+  private sessionId: string | null = null;
+  loading: boolean = false;
+  backendError: string = '';
+  currentBackendQuestion: string | null = null;
+
+  // Questions par phase (remplies dynamiquement depuis le backend)
+  questions: { technical: InterviewQuestion[]; softSkills: InterviewQuestion[] } = {
+    technical: Array(5).fill(null).map(() => ({ question: '', type: 'text', category: 'technical' })),
+    softSkills: Array(5).fill(null).map(() => ({ question: '', type: 'text', category: 'soft-skills' }))
   };
+
+  // Question d'introduction (1 seule)
+  introQuestion: InterviewQuestion | null = null;
+
+  // Targets pour la démo (strictement 1 intro, 5 techniques, 5 soft skills)
+  introTargetCount: number = 1;
+  technicalTargetCount: number = 5;
+  softSkillsTargetCount: number = 5;
 
   // Réponses stockées
   answers: { [key: string]: string } = {};
 
   ngOnInit() {
     this.initializeInterview();
+    this.prefillRoleFromAdmin();
   }
+
+  constructor(private interviewService: InterviewService, private cdr: ChangeDetectorRef, private adminService: AdminService) {}
 
   initializeInterview() {
     this.currentPhase = 'intro';
@@ -89,45 +64,223 @@ export class InterviewComponent implements OnInit {
     this.interviewStarted = false;
     this.currentAnswer = '';
     this.answers = {};
+    
+    // Réinitialiser les arrays de questions avec les tailles correctes
+    this.questions = {
+      technical: Array(this.technicalTargetCount).fill(null).map(() => ({ question: '', type: 'text', category: 'technical' })),
+      softSkills: Array(this.softSkillsTargetCount).fill(null).map(() => ({ question: '', type: 'text', category: 'soft-skills' }))
+    };
+    
+    // Réinitialiser la question d'introduction
+    this.introQuestion = null;
   }
 
-  startInterview() {
-    if (this.userConsent) {
+  async startInterview() {
+    if (!this.userConsent || this.loading) return;
+    this.loading = true;
+    this.backendError = '';
+    try {
+      const res = await this.interviewService.startInterview({
+        role_title: this.currentRole,
+        candidate_name: this.candidateName?.trim() || undefined,
+        offer_experience_level: undefined,
+        offer_tech_skills: [],
+        offer_education: undefined,
+        offer_soft_skills: [],
+      });
+      this.sessionId = res.session_id;
       this.interviewStarted = true;
-      this.currentPhase = 'technical';
+      // Démarrer par la phase d'introduction (1 seule question)
+      this.currentPhase = 'intro';
       this.currentQuestionIndex = 0;
+      this.pendingQuestion = null;
+      await this.fetchNextQuestion();
+    } catch (e: any) {
+      this.backendError = e?.message || 'Erreur lors du démarrage de l\'entretien';
+    } finally {
+      this.loading = false;
     }
   }
 
-  submitAnswer() {
-    if (this.currentAnswer.trim()) {
-      // Sauvegarder la réponse
-      const questionKey = `${this.currentPhase}_${this.currentQuestionIndex}`;
-      this.answers[questionKey] = this.currentAnswer;
+  async submitAnswer() {
+    if (!this.currentAnswer.trim() || !this.sessionId || this.loading) return;
+    this.loading = true;
+    try {
+      await this.interviewService.sendAnswer(this.sessionId, this.currentAnswer.trim());
       
-      // Passer à la question suivante
-      this.nextQuestion();
+      // Sauvegarde locale et progression
+      if (this.currentPhase !== 'intro') {
+        const questionKey = `${this.currentPhase}_${this.currentQuestionIndex}`;
+        this.answers[questionKey] = this.currentAnswer.trim();
+        this.currentQuestionIndex++;
+        
+        // Basculer vers la phase suivante si le quota est atteint
+        if (this.currentPhase === 'technical' && this.currentQuestionIndex >= this.technicalTargetCount) {
+          this.currentPhase = 'soft-skills';
+          this.currentQuestionIndex = 0;
+        } else if (this.currentPhase === 'soft-skills' && this.currentQuestionIndex >= this.softSkillsTargetCount) {
+          this.currentPhase = 'conclusion';
+          // L'entretien est terminé, le rapport sera généré automatiquement par le crew AI
+          this.loading = false;
+          this.currentAnswer = '';
+          this.cdr.detectChanges();
+          return; // Sortir ici pour éviter de chercher une nouvelle question
+        }
+      } else {
+        // Après l'unique question d'introduction, passer en technique
+        this.currentPhase = 'technical';
+        this.currentQuestionIndex = 0;
+      }
+      
+      // Reset des variables d'état
+      this.pendingQuestion = null;
+      this.currentAnswer = '';
+      
+      // Récupérer immédiatement la prochaine question
+      await this.fetchNextQuestion();
+      
+    } catch (e: any) {
+      this.backendError = e?.message || 'Erreur lors de l\'envoi de la réponse';
+    } finally {
+      this.loading = false;
+      this.cdr.detectChanges();
     }
   }
 
-  skipQuestion() {
-    // Marquer la question comme sautée
-    const questionKey = `${this.currentPhase}_${this.currentQuestionIndex}`;
-    this.answers[questionKey] = '[Question sautée]';
-    
-    this.nextQuestion();
+  async skipQuestion() {
+    if (!this.sessionId || this.loading) return;
+    this.loading = true;
+    try {
+      await this.interviewService.sendAnswer(this.sessionId, '[Question sautée]');
+      
+      if (this.currentPhase !== 'intro') {
+        const questionKey = `${this.currentPhase}_${this.currentQuestionIndex}`;
+        this.answers[questionKey] = '[Question sautée]';
+        this.currentQuestionIndex++;
+        
+        if (this.currentPhase === 'technical' && this.currentQuestionIndex >= this.technicalTargetCount) {
+          this.currentPhase = 'soft-skills';
+          this.currentQuestionIndex = 0;
+        } else if (this.currentPhase === 'soft-skills' && this.currentQuestionIndex >= this.softSkillsTargetCount) {
+          this.currentPhase = 'conclusion';
+          // L'entretien est terminé, le rapport sera généré automatiquement par le crew AI
+          this.loading = false;
+          this.currentAnswer = '';
+          this.cdr.detectChanges();
+          return;
+        }
+      } else {
+        // Après l'unique question d'introduction, passer en technique
+        this.currentPhase = 'technical';
+        this.currentQuestionIndex = 0;
+      }
+      
+      // Reset des variables d'état
+      this.pendingQuestion = null;
+      this.currentAnswer = '';
+      
+      // Récupérer immédiatement la prochaine question
+      await this.fetchNextQuestion();
+      
+    } catch (e: any) {
+      this.backendError = e?.message || 'Erreur lors du passage de la question';
+    } finally {
+      this.loading = false;
+      this.cdr.detectChanges();
+    }
   }
 
-  nextQuestion() {
-    this.currentQuestionIndex++;
-    this.currentAnswer = '';
+  private pendingQuestion: string | null = null;
+
+  // Méthode pour récupérer la prochaine question après une réponse
+  private async fetchNextQuestion() {
+    if (!this.sessionId) return;
     
-    // Vérifier si on a terminé la phase actuelle
-    if (this.currentPhase === 'technical' && this.currentQuestionIndex >= this.questions.technical.length) {
-      this.currentPhase = 'soft-skills';
-      this.currentQuestionIndex = 0;
-    } else if (this.currentPhase === 'soft-skills' && this.currentQuestionIndex >= this.questions.softSkills.length) {
+    // Petite temporisation pour laisser le backend traiter la réponse
+    await new Promise(resolve => setTimeout(resolve, 100));
+    
+    let retryCount = 0;
+    const maxRetries = 20; // Maximum 10 secondes d'attente
+    
+    while (retryCount < maxRetries) {
+      const res = await this.interviewService.getQuestion(this.sessionId);
+      
+      if (res.status === 'question' && res.question) {
+        // Vérifier que ce n'est pas la même question que la précédente
+        if (this.pendingQuestion !== res.question) {
+          this.pendingQuestion = res.question;
+          this.currentBackendQuestion = res.question;
+
+          // Assigner la question au slot courant
+          if (this.currentPhase === 'intro') {
+            this.introQuestion = { 
+              question: res.question, 
+              type: 'text', 
+              category: 'introduction' 
+            } as any;
+          } else if (this.currentPhase === 'technical') {
+            this.questions.technical[this.currentQuestionIndex] = { 
+              question: res.question, 
+              type: 'text', 
+              category: 'technical' 
+            } as any;
+          } else if (this.currentPhase === 'soft-skills') {
+            this.questions.softSkills[this.currentQuestionIndex] = { 
+              question: res.question, 
+              type: 'text', 
+              category: 'soft-skills' 
+            } as any;
+          }
+          
+          this.cdr.detectChanges();
+          return; // Question récupérée avec succès
+        }
+      } else if (res.status === 'done') {
+        this.currentPhase = 'conclusion';
+        // L'entretien est terminé, le rapport sera généré automatiquement par le crew AI
+        this.cdr.detectChanges();
+        return;
+      } else if (res.status === 'error') {
+        this.backendError = res.message || 'Erreur backend';
+        return;
+      }
+      
+      // Attendre avant de réessayer
+      await new Promise(resolve => setTimeout(resolve, 500));
+      retryCount++;
+    }
+    
+    // Si on arrive ici, on n'a pas réussi à obtenir une nouvelle question
+    this.backendError = 'Impossible de récupérer la prochaine question. Veuillez réessayer.';
+  }
+
+  private async fetchQuestion() {
+    if (!this.sessionId) return;
+    const res = await this.interviewService.getQuestion(this.sessionId);
+    if (res.status === 'question' && res.question) {
+      // Dédupliquer si on reçoit deux fois la même question
+      if (this.pendingQuestion === res.question) {
+        return;
+      }
+      this.pendingQuestion = res.question;
+      this.currentBackendQuestion = res.question;
+
+      // Mappez la question backend au slot courant
+      if (this.currentPhase === 'technical') {
+        this.questions.technical[this.currentQuestionIndex] = { question: res.question, type: 'text', category: 'Backend' } as any;
+      } else if (this.currentPhase === 'soft-skills') {
+        this.questions.softSkills[this.currentQuestionIndex] = { question: res.question, type: 'text', category: 'Soft Skills' } as any;
+      }
+      // Force change detection in zoneless mode so UI updates immediately
+      this.cdr.detectChanges();
+    } else if (res.status === 'waiting') {
+      // Petite temporisation avant re-poll + tenter de rafraîchir si une question était en vol
+      setTimeout(() => this.fetchQuestion(), 500);
+    } else if (res.status === 'done') {
       this.currentPhase = 'conclusion';
+      // L'entretien est terminé, le rapport sera généré automatiquement par le crew AI
+    } else if (res.status === 'error') {
+      this.backendError = res.message || 'Erreur backend';
     }
   }
 
@@ -149,16 +302,18 @@ export class InterviewComponent implements OnInit {
 
   hasCompletedPhase(phase: 'technical' | 'soft-skills'): boolean {
     if (phase === 'technical') {
-      return this.answers['technical_' + (this.questions.technical.length - 1)] !== undefined;
+      return this.answers['technical_' + (this.technicalTargetCount - 1)] !== undefined;
     }
     if (phase === 'soft-skills') {
-      return this.answers['soft-skills_' + (this.questions.softSkills.length - 1)] !== undefined;
+      return this.answers['soft-skills_' + (this.softSkillsTargetCount - 1)] !== undefined;
     }
     return false;
   }
 
-  getCurrentQuestion() {
-    if (this.currentPhase === 'technical') {
+  getCurrentQuestion(): InterviewQuestion | null {
+    if (this.currentPhase === 'intro') {
+      return this.introQuestion;
+    } else if (this.currentPhase === 'technical') {
       return this.questions.technical[this.currentQuestionIndex];
     } else if (this.currentPhase === 'soft-skills') {
       return this.questions.softSkills[this.currentQuestionIndex];
@@ -166,21 +321,25 @@ export class InterviewComponent implements OnInit {
     return null;
   }
 
-  getTechnicalQuestions() {
+  getTechnicalQuestions(): InterviewQuestion[] {
     return this.questions.technical;
   }
 
-  getSoftSkillsQuestions() {
+  getSoftSkillsQuestions(): InterviewQuestion[] {
     return this.questions.softSkills;
   }
 
   getProgressPercentage(): number {
-    if (this.currentPhase === 'intro') return 0;
+    if (this.currentPhase === 'intro') {
+      return 10; // 10% pour la phase d'introduction (1 question)
+    }
     if (this.currentPhase === 'technical') {
-      return Math.round((this.currentQuestionIndex / this.questions.technical.length) * 25);
+      const techProgress = (this.currentQuestionIndex / this.technicalTargetCount) * 40; // 40% pour les 5 questions techniques
+      return 10 + Math.round(techProgress);
     }
     if (this.currentPhase === 'soft-skills') {
-      return 25 + Math.round((this.currentQuestionIndex / this.questions.softSkills.length) * 25);
+      const softProgress = (this.currentQuestionIndex / this.softSkillsTargetCount) * 40; // 40% pour les 5 questions soft skills
+      return 50 + Math.round(softProgress);
     }
     if (this.currentPhase === 'conclusion') return 100;
     return 0;
@@ -191,41 +350,19 @@ export class InterviewComponent implements OnInit {
     return phases.indexOf(this.currentPhase) + 1;
   }
 
-  downloadReport() {
-    // Créer un rapport simple
-    const report = this.generateReport();
-    const blob = new Blob([report], { type: 'text/plain' });
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `entretien_${this.currentRole}_${new Date().toISOString().split('T')[0]}.txt`;
-    a.click();
-    window.URL.revokeObjectURL(url);
+  // Génération du rapport par l'AI crew (automatique à la fin de l'entretien)
+
+  private async prefillRoleFromAdmin() {
+    try {
+      const cfg = await this.adminService.getJobConfig();
+      if (!this.currentRole && cfg && cfg.title) {
+        this.currentRole = cfg.title;
+        this.cdr.detectChanges();
+      }
+    } catch {}
   }
 
-  generateReport(): string {
-    let report = `RAPPORT D'ENTRETIEN - POSTE DE ${this.currentRole.toUpperCase()}\n`;
-    report += `Date: ${new Date().toLocaleDateString('fr-FR')}\n`;
-    report += `Phase: ${this.currentPhase}\n\n`;
-
-    // Ajouter les réponses techniques
-    report += 'QUESTIONS TECHNIQUES:\n';
-    this.questions.technical.forEach((q, index) => {
-      const answer = this.answers[`technical_${index}`] || 'Non répondu';
-      report += `${index + 1}. ${q.question}\n`;
-      report += `   Réponse: ${answer}\n\n`;
-    });
-
-    // Ajouter les réponses soft skills
-    report += 'QUESTIONS SOFT SKILLS:\n';
-    this.questions.softSkills.forEach((q, index) => {
-      const answer = this.answers[`soft-skills_${index}`] || 'Non répondu';
-      report += `${index + 1}. ${q.question}\n`;
-      report += `   Réponse: ${answer}\n\n`;
-    });
-
-    return report;
-  }
+  // Rapport généré automatiquement par l'AI crew dans interview_report.md
 
   restartInterview() {
     this.initializeInterview();

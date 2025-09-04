@@ -1,0 +1,36 @@
+RAPPORT D'ENTRETIEN - POSTE DE PYTHON SENIOR
+Date: 01/09/2025
+Phase: conclusion
+
+QUESTIONS TECHNIQUES:
+1. FastAPI is described as a modern Python web framework that leverages Python's type hints. (fastapi_tutorial.txt::chunk-10) Can you explain how type hints contribute to the efficiency and development speed in FastAPI, and what benefits they offer in terms of code maintainability and reducing errors?
+   Réponse: it makes the code simple as possible
+
+2. FastAPI is known for its speed and efficiency. According to 'fastapi_tutorial.txt::chunk-10', it leverages Starlette and Pydantic. Can you explain how these libraries contribute to FastAPI's performance and what are their individual roles?
+   Réponse: yes it contribute to minimize code
+
+3. FastAPI utilizes ASGI with Uvicorn for asynchronous operations. According to 'fastapi_tutorial.txt::chunk-17', why is ASGI preferred over WSGI for asyncio applications in FastAPI, and what benefits does Uvicorn provide?
+   Réponse: i don't know this term
+
+4. Based on 'fastapi_tutorial.txt::chunk-65', FastAPI uses `TemplateResponse` with Jinja2 for rendering HTML. Can you explain the purpose of the `request: Request` parameter in the `hello` function and how it's used within the `TemplateResponse`?
+   Réponse: it make the compilation more fast
+
+5. According to 'fastapi_tutorial.txt::chunk-90', FastAPI's dependency injection system makes it easier to integrate components. Can you explain the advantages of using dependency injection in FastAPI, particularly in the context of reusability and testability?
+   Réponse: with constructur or pom file
+
+QUESTIONS SOFT SKILLS:
+1. According to 'fastapi_tutorial.txt::chunk-135', FastAPI uses `app.add_middleware()` to handle requests. Can you describe the purpose of the `call_next()` function within a custom middleware in FastAPI and explain how it's used to process the request?
+   Réponse: No
+
+2. Akram BEn, tell me about a time you faced a significant challenge while working on a Python project. How did you approach the problem, and what was the outcome?
+   Réponse: [Question sautée]
+
+3. Describe a situation where you had to collaborate with a team member who had a different working style than you. How did you adapt to work effectively together?
+   Réponse: [Question sautée]
+
+4. Tell me about a time you made a mistake on a project. What did you learn from it, and how did you prevent similar mistakes from happening again?
+   Réponse: [Question sautée]
+
+5. Akram BEn, décrivez une situation où vous avez dû faire face à un désaccord important au sein d'une équipe. Comment avez-vous géré la situation et quel a été le résultat ?
+   Réponse: [Question sautée]
+

@@ -1,0 +1,3 @@
+<!-- This is a placeholder for favicon.ico -->
+<!-- In production, you should convert the SVG to ICO format using an online converter -->
+<!-- For now, browsers will fallback to the SVG favicon -->

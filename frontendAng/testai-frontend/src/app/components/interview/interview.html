@@ -6,12 +6,12 @@
         <i class="fas fa-user-tie me-2"></i>
         Entretien pour le poste de {{ currentRole }}
       </h2>
-      
+
       <!-- Barre de progression -->
       <div class="progress-container mb-4">
         <div class="progress" style="height: 8px;">
-          <div class="progress-bar bg-primary" 
-               [style.width.%]="getProgressPercentage()" 
+          <div class="progress-bar bg-primary"
+               [style.width.%]="getProgressPercentage()"
                role="progressbar">
           </div>
         </div>
@@ -26,6 +26,12 @@
 
   <!-- Contenu principal -->
   <div class="container">
+    <!-- Affichage des erreurs -->
+    <div *ngIf="backendError" class="alert alert-danger alert-dismissible fade show" role="alert">
+      <i class="fas fa-exclamation-triangle me-2"></i>
+      {{ backendError }}
+      <button type="button" class="btn-close" (click)="backendError = ''"></button>
+    </div>
     <!-- Phase d'introduction -->
     <div *ngIf="currentPhase === 'intro'" class="interview-phase">
       <div class="card">
@@ -40,16 +46,29 @@
             <h4>Bienvenue dans votre entretien !</h4>
             <p class="text-muted">
               Cet entretien durera environ 45 minutes et se déroulera en 4 phases :<br>
-              <strong>Introduction</strong> • <strong>Questions techniques</strong> • <strong>Soft skills</strong> • <strong>Conclusion</strong>
+              <strong>Introduction (1 question)</strong> • <strong>Questions techniques (5 questions)</strong> • <strong>Soft skills (5 questions)</strong> • <strong>Conclusion</strong>
             </p>
+          </div>
+
+          <ng-container *ngIf="!interviewStarted">
+
+          <!-- Nom du candidat -->
+          <div class="candidate-name-section text-center mb-3">
+            <div class="row justify-content-center">
+              <div class="col-md-6">
+                <label for="candidateName" class="form-label">Votre nom et prénom</label>
+                <input id="candidateName" type="text" class="form-control form-control-lg"
+                       [(ngModel)]="candidateName" placeholder="Ex: Akram BENHAMMOU">
+              </div>
+            </div>
           </div>
 
           <!-- Consentement -->
           <div class="consent-section text-center">
             <div class="form-check d-inline-block">
-              <input class="form-check-input" 
-                     type="checkbox" 
-                     id="consent" 
+              <input class="form-check-input"
+                     type="checkbox"
+                     id="consent"
                      [(ngModel)]="userConsent">
               <label class="form-check-label" for="consent">
                 Je consens à participer à cet entretien et j'accepte que mes réponses soient enregistrées
@@ -58,13 +77,47 @@
           </div>
 
           <div class="text-center mt-4">
-            <button class="btn btn-primary btn-lg" 
-                    [disabled]="!userConsent"
+            <button class="btn btn-primary btn-lg"
+                    [disabled]="!userConsent || !(candidateName && candidateName.trim().length > 0)"
                     (click)="startInterview()">
               <i class="fas fa-play me-2"></i>
               Commencer l'entretien
             </button>
           </div>
+          </ng-container>
+
+          <!-- Affichage de la seule question d'introduction une fois démarré -->
+          <div *ngIf="interviewStarted" class="question-display mb-4">
+            <h4 class="question-text">
+              {{ getCurrentQuestion()?.question || 'Chargement de la question...' }}
+            </h4>
+            <div class="question-meta">
+              <span class="badge bg-secondary me-2">Introduction</span>
+            </div>
+          </div>
+
+          <div *ngIf="interviewStarted" class="answer-input mb-4">
+            <label for="introAnswer" class="form-label">Votre réponse :</label>
+            <textarea class="form-control" id="introAnswer" rows="3" [(ngModel)]="currentAnswer"></textarea>
+          </div>
+
+          <div *ngIf="interviewStarted" class="question-actions">
+            <button class="btn btn-secondary me-2" 
+                    [disabled]="loading"
+                    (click)="skipQuestion()">
+              <i class="fas fa-forward me-2" *ngIf="!loading"></i>
+              <span class="spinner-border spinner-border-sm me-2" *ngIf="loading"></span>
+              Passer la question
+            </button>
+            <button class="btn btn-primary" 
+                    [disabled]="loading || !currentAnswer.trim()"
+                    (click)="submitAnswer()">
+              <i class="fas fa-paper-plane me-2" *ngIf="!loading"></i>
+              <span class="spinner-border spinner-border-sm me-2" *ngIf="loading"></span>
+              {{ loading ? 'En cours...' : 'Envoyer la réponse' }}
+            </button>
+          </div>
+
         </div>
       </div>
     </div>
@@ -85,7 +138,7 @@
             </h4>
             <div class="question-meta">
               <span class="badge bg-secondary me-2">
-                Question {{ currentQuestionIndex + 1 }} sur {{ getTechnicalQuestions().length }}
+                Question {{ currentQuestionIndex + 1 }} sur {{ technicalTargetCount }}
               </span>
               <span class="badge bg-info">Technique</span>
             </div>
@@ -93,7 +146,7 @@
 
           <div class="answer-input mb-4">
             <label for="technicalAnswer" class="form-label">Votre réponse :</label>
-            <textarea class="form-control" 
+            <textarea class="form-control"
                       id="technicalAnswer"
                       rows="4"
                       placeholder="Décrivez votre expérience et vos connaissances..."
@@ -101,15 +154,19 @@
           </div>
 
           <div class="question-actions">
-            <button class="btn btn-secondary me-2" (click)="skipQuestion()">
-              <i class="fas fa-forward me-2"></i>
+            <button class="btn btn-secondary me-2" 
+                    [disabled]="loading"
+                    (click)="skipQuestion()">
+              <i class="fas fa-forward me-2" *ngIf="!loading"></i>
+              <span class="spinner-border spinner-border-sm me-2" *ngIf="loading"></span>
               Passer
             </button>
-            <button class="btn btn-primary" 
-                    [disabled]="!currentAnswer.trim()"
+            <button class="btn btn-primary"
+                    [disabled]="loading || !currentAnswer.trim()"
                     (click)="submitAnswer()">
-              <i class="fas fa-check me-2"></i>
-              Valider et continuer
+              <i class="fas fa-check me-2" *ngIf="!loading"></i>
+              <span class="spinner-border spinner-border-sm me-2" *ngIf="loading"></span>
+              {{ loading ? 'En cours...' : 'Valider et continuer' }}
             </button>
           </div>
         </div>
@@ -132,7 +189,7 @@
             </h4>
             <div class="question-meta">
               <span class="badge bg-secondary me-2">
-                Question {{ currentQuestionIndex + 1 }} sur {{ getSoftSkillsQuestions().length }}
+                Question {{ currentQuestionIndex + 1 }} sur {{ softSkillsTargetCount }}
               </span>
               <span class="badge bg-success">Soft Skills</span>
             </div>
@@ -140,7 +197,7 @@
 
           <div class="answer-input mb-4">
             <label for="softSkillsAnswer" class="form-label">Votre réponse :</label>
-            <textarea class="form-control" 
+            <textarea class="form-control"
                       id="softSkillsAnswer"
                       rows="4"
                       placeholder="Partagez une expérience concrète..."
@@ -148,15 +205,19 @@
           </div>
 
           <div class="question-actions">
-            <button class="btn btn-secondary me-2" (click)="skipQuestion()">
-              <i class="fas fa-forward me-2"></i>
+            <button class="btn btn-secondary me-2" 
+                    [disabled]="loading"
+                    (click)="skipQuestion()">
+              <i class="fas fa-forward me-2" *ngIf="!loading"></i>
+              <span class="spinner-border spinner-border-sm me-2" *ngIf="loading"></span>
               Passer
             </button>
-            <button class="btn btn-success" 
-                    [disabled]="!currentAnswer.trim()"
+            <button class="btn btn-success"
+                    [disabled]="loading || !currentAnswer.trim()"
                     (click)="submitAnswer()">
-              <i class="fas fa-check me-2"></i>
-              Valider et continuer
+              <i class="fas fa-check me-2" *ngIf="!loading"></i>
+              <span class="spinner-border spinner-border-sm me-2" *ngIf="loading"></span>
+              {{ loading ? 'En cours...' : 'Valider et continuer' }}
             </button>
           </div>
         </div>
@@ -192,10 +253,6 @@
           </div>
 
           <div class="action-buttons">
-            <button class="btn btn-outline-primary me-2" (click)="downloadReport()">
-              <i class="fas fa-download me-2"></i>
-              Télécharger le rapport
-            </button>
             <button class="btn btn-primary" (click)="restartInterview()">
               <i class="fas fa-redo me-2"></i>
               Recommencer
@@ -209,7 +266,7 @@
     <div class="phase-navigation mt-4" *ngIf="currentPhase !== 'intro' && currentPhase !== 'conclusion'">
       <div class="row">
         <div class="col-md-3">
-          <button class="btn btn-outline-primary w-100" 
+          <button class="btn btn-outline-primary w-100"
                   [disabled]="!canAccessPhase('intro')"
                   (click)="goToPhase('intro')">
             <i class="fas fa-handshake me-2"></i>
@@ -217,7 +274,7 @@
           </button>
         </div>
         <div class="col-md-3">
-          <button class="btn btn-outline-info w-100" 
+          <button class="btn btn-outline-info w-100"
                   [disabled]="!canAccessPhase('technical')"
                   (click)="goToPhase('technical')">
             <i class="fas fa-code me-2"></i>
@@ -225,7 +282,7 @@
           </button>
         </div>
         <div class="col-md-3">
-          <button class="btn btn-outline-success w-100" 
+          <button class="btn btn-outline-success w-100"
                   [disabled]="!canAccessPhase('soft-skills')"
                   (click)="goToPhase('soft-skills')">
             <i class="fas fa-users me-2"></i>
@@ -233,7 +290,7 @@
           </button>
         </div>
         <div class="col-md-3">
-          <button class="btn btn-outline-warning w-100" 
+          <button class="btn btn-outline-warning w-100"
                   [disabled]="!canAccessPhase('conclusion')"
                   (click)="goToPhase('conclusion')">
             <i class="fas fa-flag-checkered me-2"></i>

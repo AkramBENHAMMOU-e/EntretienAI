@@ -1,17 +1,9 @@
 {
-  "templates": [
-    {
-      "name": ""
-    },
-    {
-      "name": "Comptable"
-    }
-  ],
-  "offer": {
-    "role_title": "Comptable",
-    "experience_level": "3 ans",
-    "tech_skills": "Francais , communication , Excel",
-    "education": "Master Comptabilté et finance interntional",
-    "soft_skills": "Leadership, communication"
-  }
+  "title": "python senior",
+  "department": "informatique",
+  "experience": "10ans",
+  "salary": "30000",
+  "location": "Casa",
+  "requirements": "Master bac +5",
+  "company_name": "YAEnterprises"
 }
