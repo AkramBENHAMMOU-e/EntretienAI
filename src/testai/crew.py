@@ -106,9 +106,13 @@ class Testai():
 
     @task
     def report_task(self) -> Task:
+        # Ensure report is written to workspace root
+        import os
+        workspace_root = os.getcwd()
+        report_path = os.path.join(workspace_root, 'interview_report.md')
         return Task(
             config=self.tasks_config['report_task'],  # type: ignore[index]
-            output_file='interview_report.md'
+            output_file=report_path
         )
 
     @crew

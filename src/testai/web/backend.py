@@ -112,6 +112,11 @@ _current_job_config: JobConfig = load_job_config_from_file()
 def _run_crew_in_thread(session_id: str, payload: StartPayload):
     # Attach session id to this worker thread
     session_context.session_id = session_id
+    
+    # Ensure we're in the correct working directory (workspace root)
+    import os
+    workspace_root = Path.cwd()
+    os.chdir(workspace_root)
 
     # Build inputs expected by Testai().crew().kickoff
     inputs = {
@@ -134,9 +139,20 @@ def _run_crew_in_thread(session_id: str, payload: StartPayload):
     try:
         # Ensure the crew uses the web tool path
         os.environ['USE_WEB_UI'] = '1'
+        print(f"[crew] Starting interview execution in directory: {os.getcwd()}")
         Testai().crew().kickoff(inputs=inputs)
+        print(f"[crew] Interview completed, checking for report file...")
+        
+        # Verify report file was created
+        report_path = workspace_root / "interview_report.md"
+        if report_path.exists():
+            print(f"[crew] Report successfully created at: {report_path}")
+        else:
+            print(f"[crew] WARNING: Report file not found at: {report_path}")
+            
         broker.mark_done(session_id)
     except Exception as e:
+        print(f"[crew] Error during interview execution: {e}")
         broker.mark_error(session_id, str(e))
 
 
@@ -225,7 +241,9 @@ from fastapi.responses import FileResponse
 
 @app.get("/api/admin/report/md")
 def get_interview_report_md():
-    p = Path("interview_report.md")
+    # Use absolute path from workspace root
+    workspace_root = Path.cwd()
+    p = workspace_root / "interview_report.md"
     if not p.exists():
         raise HTTPException(status_code=404, detail="interview_report.md not found")
     try:
@@ -237,7 +255,9 @@ def get_interview_report_md():
 
 @app.get("/api/admin/report/raw")
 def download_interview_report_raw():
-    p = Path("interview_report.md")
+    # Use absolute path from workspace root
+    workspace_root = Path.cwd()
+    p = workspace_root / "interview_report.md"
     if not p.exists():
         raise HTTPException(status_code=404, detail="interview_report.md not found")
     return FileResponse(p, media_type="text/markdown", filename=p.name)
